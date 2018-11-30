@@ -1,0 +1,3276 @@
+<!DOCTYPE html>
+<!-- saved from url=(0038)https://www.jianshu.com/p/b21d54a9bdec -->
+<html><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+
+  <!-- Start of Baidu Transcode -->
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta name="applicable-device" content="pc,mobile">
+  <meta name="MobileOptimized" content="width">
+  <meta name="HandheldFriendly" content="true">
+  <meta name="mobile-agent" content="format=html5;url=https://www.jianshu.com/p/b21d54a9bdec">
+  <!-- End of Baidu Transcode -->
+
+    <meta name="description" content="前言 概述 在公司的服务器上搭建了5遍，第一遍看别人的文章自己搭，第二遍全部铲了重新搭边搭边写文章，安装完后发现CM使用的是默认的内嵌数据库第三遍把Cloudera Manager卸载重新安装，使用Mysql作为CM的数据库第四遍全部铲了重新搭验证第五遍全部铲了把内存增加到32G重新搭验证 Cloudera Manager版本选择 Cloudera公司一般都是3个月发布一次版本，但是如果发布...">
+
+  <meta name="360-site-verification" content="604a14b53c6b871206001285921e81d8">
+  <meta property="wb:webmaster" content="294ec9de89e7fadb">
+  <meta property="qc:admins" content="104102651453316562112116375">
+  <meta property="qc:admins" content="11635613706305617">
+  <meta property="qc:admins" content="1163561616621163056375">
+  <meta name="google-site-verification" content="cV4-qkUJZR6gmFeajx_UyPe47GW9vY6cnCrYtCHYNh4">
+  <meta name="google-site-verification" content="HF7lfF8YEGs1qtCE-kPml8Z469e2RHhGajy6JPVy5XI">
+  <meta http-equiv="mobile-agent" content="format=html5; url=https://www.jianshu.com/p/b21d54a9bdec">
+
+  <!-- Apple -->
+  <meta name="apple-mobile-web-app-title" content="简书">
+
+    <!--  Meta for Smart App Banner -->
+  <meta name="apple-itunes-app" content="app-id=888237539, app-argument=jianshu://notes/19363710">
+  <!-- End -->
+
+  <!--  Meta for Twitter Card -->
+  <meta content="summary" property="twitter:card">
+  <meta content="@jianshucom" property="twitter:site">
+  <meta content="史上最全CentOS6离线安装部署Cloudera Manager5.9.3" property="twitter:title">
+  <meta content="前言 概述 在公司的服务器上搭建了5遍，第一遍看别人的文章自己搭，第二遍全部铲了重新搭边搭边写文章，安装完后发现CM使用的是默认的内嵌数据库第三遍把Cloudera Mana..." property="twitter:description">
+  <meta content="https://www.jianshu.com/p/b21d54a9bdec" property="twitter:url">
+  <!-- End -->
+
+  <!--  Meta for OpenGraph -->
+  <meta property="fb:app_id" content="865829053512461">
+  <meta property="og:site_name" content="简书">
+  <meta property="og:title" content="史上最全CentOS6离线安装部署Cloudera Manager5.9.3">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.jianshu.com/p/b21d54a9bdec">
+  <meta property="og:description" content="前言 概述 在公司的服务器上搭建了5遍，第一遍看别人的文章自己搭，第二遍全部铲了重新搭边搭边写文章，安装完后发现CM使用的是默认的内嵌数据库第三遍把Cloudera Manager卸载重新安装，...">
+  <!-- End -->
+
+  <!--  Meta for Facebook Applinks -->
+  <meta property="al:ios:url" content="jianshu://notes/19363710">
+  <meta property="al:ios:app_store_id" content="888237539">
+  <meta property="al:ios:app_name" content="简书">
+
+  <meta property="al:android:url" content="jianshu://notes/19363710">
+  <meta property="al:android:package" content="com.jianshu.haruki">
+  <meta property="al:android:app_name" content="简书">
+  <!-- End -->
+
+
+    <title>史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书</title>
+
+  <meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token" content="eiTFHCp+PQhMOLCVTwIGlsOaSMYVa+J/qH5HiLbLg2+XX3V3GmQ2lB+UdR2IAoxn6JJPTc6s3G9Lf48JLOvUvQ==">
+
+  <link rel="stylesheet" media="all" href="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/web-f2044e800265d8edbb60.css">
+  
+  <link rel="stylesheet" media="all" href="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/entry-00e12f5a757a30f65da3.css">
+
+  <link href="https://cdn2.jianshu.io/assets/favicons/favicon-e743bfb1821442341c3ab15bdbe804f7ad97676bd07a770ccc9483473aa76f06.ico" rel="shortcut icon" type="image/x-icon">
+      <link rel="apple-touch-icon-precomposed" href="https://cdn2.jianshu.io/assets/apple-touch-icons/57-a6f1f1ee62ace44f6dc2f6a08575abd3c3b163288881c78dd8d75247682a4b27.png" sizes="57x57">
+      <link rel="apple-touch-icon-precomposed" href="https://cdn2.jianshu.io/assets/apple-touch-icons/72-fb9834bcfce738fd7b9c5e31363e79443e09a81a8e931170b58bc815387c1562.png" sizes="72x72">
+      <link rel="apple-touch-icon-precomposed" href="https://cdn2.jianshu.io/assets/apple-touch-icons/76-49d88e539ff2489475d603994988d871219141ecaa0b1a7a9a1914f4fe3182d6.png" sizes="76x76">
+      <link rel="apple-touch-icon-precomposed" href="https://cdn2.jianshu.io/assets/apple-touch-icons/114-24252fe693524ed3a9d0905e49bff3cbd0228f25a320aa09053c2ebb4955de97.png" sizes="114x114">
+      <link rel="apple-touch-icon-precomposed" href="https://cdn2.jianshu.io/assets/apple-touch-icons/120-1bb7371f5e87f93ce780a5f1a05ff1b176828ee0d1d130e768575918a2e05834.png" sizes="120x120">
+      <link rel="apple-touch-icon-precomposed" href="https://cdn2.jianshu.io/assets/apple-touch-icons/152-bf209460fc1c17bfd3e2b84c8e758bc11ca3e570fd411c3bbd84149b97453b99.png" sizes="152x152">
+
+  <!-- Start of 访问统计 -->
+    <script src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/push.js"></script><script src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/hm.js"></script><script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?0c0e9d9b1e7d617b3e6842e85b9fb068";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+  <!-- End of 访问统计 -->
+<style type="text/css">@charset "UTF-8";.image-package .image-container{position:relative;z-index:2;background-color:#eee;-webkit-transition:background-color .1s linear;-o-transition:background-color .1s linear;transition:background-color .1s linear;margin:0 auto}body.reader-night-mode .image-package .image-container{background-color:#545454}.image-package .image-container-fill{z-index:1}.image-package .image-container .image-view{position:absolute;top:0;left:0;width:100%;height:100%;overflow:hidden}.image-package .image-container .image-view-error:after{content:"图片获取失败，请点击重试";position:absolute;top:50%;left:50%;width:100%;-webkit-transform:translate(-50%,-50%);-ms-transform:translate(-50%,-50%);transform:translate(-50%,-50%);color:#888;font-size:14px}.image-package .image-container .image-view img.image-loading{opacity:.3}.image-package .image-container .image-view img{-webkit-transition:all .15s linear;-o-transition:all .15s linear;transition:all .15s linear;z-index:2;opacity:1}</style><style type="text/css">fieldset[disabled] .multiselect {
+  pointer-events: none;
+}
+
+.multiselect__spinner {
+  position: absolute;
+  right: 1px;
+  top: 1px;
+  width: 48px;
+  height: 35px;
+  background: #fff;
+  display: block;
+}
+
+.multiselect__spinner:after,
+.multiselect__spinner:before {
+  position: absolute;
+  content: "";
+  top: 50%;
+  left: 50%;
+  margin: -8px 0 0 -8px;
+  width: 16px;
+  height: 16px;
+  border-radius: 100%;
+  border-color: #41b883 transparent transparent;
+  border-style: solid;
+  border-width: 2px;
+  box-shadow: 0 0 0 1px transparent;
+}
+
+.multiselect__spinner:before {
+  animation: a 2.4s cubic-bezier(.41,.26,.2,.62);
+  animation-iteration-count: infinite;
+}
+
+.multiselect__spinner:after {
+  animation: a 2.4s cubic-bezier(.51,.09,.21,.8);
+  animation-iteration-count: infinite;
+}
+
+.multiselect__loading-enter-active,
+.multiselect__loading-leave-active {
+  transition: opacity .4s ease-in-out;
+  opacity: 1;
+}
+
+.multiselect__loading-enter,
+.multiselect__loading-leave-active {
+  opacity: 0;
+}
+
+.multiselect,
+.multiselect__input,
+.multiselect__single {
+  font-family: inherit;
+  font-size: 14px;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+}
+
+.multiselect {
+  box-sizing: content-box;
+  display: block;
+  position: relative;
+  width: 100%;
+  min-height: 40px;
+  text-align: left;
+  color: #35495e;
+}
+
+.multiselect * {
+  box-sizing: border-box;
+}
+
+.multiselect:focus {
+  outline: none;
+}
+
+.multiselect--disabled {
+  opacity: .6;
+}
+
+.multiselect--active {
+  z-index: 1;
+}
+
+.multiselect--active:not(.multiselect--above) .multiselect__current,
+.multiselect--active:not(.multiselect--above) .multiselect__input,
+.multiselect--active:not(.multiselect--above) .multiselect__tags {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.multiselect--active .multiselect__select {
+  transform: rotate(180deg);
+}
+
+.multiselect--above.multiselect--active .multiselect__current,
+.multiselect--above.multiselect--active .multiselect__input,
+.multiselect--above.multiselect--active .multiselect__tags {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.multiselect__input,
+.multiselect__single {
+  position: relative;
+  display: inline-block;
+  min-height: 20px;
+  line-height: 20px;
+  border: none;
+  border-radius: 5px;
+  background: #fff;
+  padding: 0 0 0 5px;
+  width: 100%;
+  transition: border .1s ease;
+  box-sizing: border-box;
+  margin-bottom: 8px;
+  vertical-align: top;
+}
+
+.multiselect__tag~.multiselect__input,
+.multiselect__tag~.multiselect__single {
+  width: auto;
+}
+
+.multiselect__input:hover,
+.multiselect__single:hover {
+  border-color: #cfcfcf;
+}
+
+.multiselect__input:focus,
+.multiselect__single:focus {
+  border-color: #a8a8a8;
+  outline: none;
+}
+
+.multiselect__single {
+  padding-left: 6px;
+  margin-bottom: 8px;
+}
+
+.multiselect__tags-wrap {
+  display: inline;
+}
+
+.multiselect__tags {
+  min-height: 40px;
+  display: block;
+  padding: 8px 40px 0 8px;
+  border-radius: 5px;
+  border: 1px solid #e8e8e8;
+  background: #fff;
+}
+
+.multiselect__tag {
+  position: relative;
+  display: inline-block;
+  padding: 4px 26px 4px 10px;
+  border-radius: 5px;
+  margin-right: 10px;
+  color: #fff;
+  line-height: 1;
+  background: #41b883;
+  margin-bottom: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 100%;
+  text-overflow: ellipsis;
+}
+
+.multiselect__tag-icon {
+  cursor: pointer;
+  margin-left: 7px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  font-weight: 700;
+  font-style: normal;
+  width: 22px;
+  text-align: center;
+  line-height: 22px;
+  transition: all .2s ease;
+  border-radius: 5px;
+}
+
+.multiselect__tag-icon:after {
+  content: "\D7";
+  color: #266d4d;
+  font-size: 14px;
+}
+
+.multiselect__tag-icon:focus,
+.multiselect__tag-icon:hover {
+  background: #369a6e;
+}
+
+.multiselect__tag-icon:focus:after,
+.multiselect__tag-icon:hover:after {
+  color: #fff;
+}
+
+.multiselect__current {
+  min-height: 40px;
+  overflow: hidden;
+  padding: 8px 12px 0;
+  padding-right: 30px;
+  white-space: nowrap;
+  border-radius: 5px;
+  border: 1px solid #e8e8e8;
+}
+
+.multiselect__current,
+.multiselect__select {
+  line-height: 16px;
+  box-sizing: border-box;
+  display: block;
+  margin: 0;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.multiselect__select {
+  position: absolute;
+  width: 40px;
+  height: 38px;
+  right: 1px;
+  top: 1px;
+  padding: 4px 8px;
+  text-align: center;
+  transition: transform .2s ease;
+}
+
+.multiselect__select:before {
+  position: relative;
+  right: 0;
+  top: 65%;
+  color: #999;
+  margin-top: 4px;
+  border-style: solid;
+  border-width: 5px 5px 0;
+  border-color: #999 transparent transparent;
+  content: "";
+}
+
+.multiselect__placeholder {
+  color: #adadad;
+  display: inline-block;
+  margin-bottom: 10px;
+  padding-top: 2px;
+}
+
+.multiselect--active .multiselect__placeholder {
+  display: none;
+}
+
+.multiselect__content-wrapper {
+  position: absolute;
+  display: block;
+  background: #fff;
+  width: 100%;
+  max-height: 240px;
+  overflow: auto;
+  border: 1px solid #e8e8e8;
+  border-top: none;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  z-index: 1;
+  -webkit-overflow-scrolling: touch;
+}
+
+.multiselect__content {
+  list-style: none;
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  min-width: 100%;
+  vertical-align: top;
+}
+
+.multiselect--above .multiselect__content-wrapper {
+  bottom: 100%;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom: none;
+  border-top: 1px solid #e8e8e8;
+}
+
+.multiselect__content::webkit-scrollbar {
+  display: none;
+}
+
+.multiselect__element {
+  display: block;
+}
+
+.multiselect__option {
+  display: block;
+  padding: 12px;
+  min-height: 40px;
+  line-height: 16px;
+  text-decoration: none;
+  text-transform: none;
+  vertical-align: middle;
+  position: relative;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.multiselect__option:after {
+  top: 0;
+  right: 0;
+  position: absolute;
+  line-height: 40px;
+  padding-right: 12px;
+  padding-left: 20px;
+}
+
+.multiselect__option--highlight {
+  background: #41b883;
+  outline: none;
+  color: #fff;
+}
+
+.multiselect__option--highlight:after {
+  content: attr(data-select);
+  background: #41b883;
+  color: #fff;
+}
+
+.multiselect__option--selected {
+  background: #f3f3f3;
+  color: #35495e;
+  font-weight: 700;
+}
+
+.multiselect__option--selected:after {
+  content: attr(data-selected);
+  color: silver;
+}
+
+.multiselect__option--selected.multiselect__option--highlight {
+  background: #ff6a6a;
+  color: #fff;
+}
+
+.multiselect__option--selected.multiselect__option--highlight:after {
+  background: #ff6a6a;
+  content: attr(data-deselect);
+  color: #fff;
+}
+
+.multiselect--disabled {
+  background: #ededed;
+  pointer-events: none;
+}
+
+.multiselect--disabled .multiselect__current,
+.multiselect--disabled .multiselect__select,
+.multiselect__option--disabled {
+  background: #ededed;
+  color: #a6a6a6;
+}
+
+.multiselect__option--disabled {
+  cursor: text;
+  pointer-events: none;
+}
+
+.multiselect__option--disabled.multiselect__option--highlight {
+  background: #dedede!important;
+}
+
+.multiselect-enter-active,
+.multiselect-leave-active {
+  transition: all .15s ease;
+}
+
+.multiselect-enter,
+.multiselect-leave-active {
+  opacity: 0;
+}
+
+.multiselect__strong {
+  margin-bottom: 8px;
+  line-height: 20px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+[dir=rtl] .multiselect {
+  text-align: right;
+}
+
+[dir=rtl] .multiselect__select {
+  right: auto;
+  left: 1px;
+}
+
+[dir=rtl] .multiselect__tags {
+  padding: 8px 8px 0 40px;
+}
+
+[dir=rtl] .multiselect__content {
+  text-align: right;
+}
+
+[dir=rtl] .multiselect__option:after {
+  right: auto;
+  left: 0;
+}
+
+[dir=rtl] .multiselect__clear {
+  right: auto;
+  left: 12px;
+}
+
+[dir=rtl] .multiselect__spinner {
+  right: auto;
+  left: 1px;
+}
+
+@keyframes a {
+  0% {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(2turn);
+  }
+}</style><style type="text/css">
+#free-reward-panel .reward-users-modal main {
+  padding: 0;
+}
+</style><style type="text/css">
+@charset "UTF-8";
+/*
+ * 变量
+*/
+.reward-note-modal .v-modal {
+  width: 620px;
+  text-align: center;
+}
+.reward-note-modal .v-modal form {
+    margin: 0 auto 25px auto;
+    padding: 0 40px;
+}
+.reward-note-modal .v-modal .reward-intro {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+.reward-note-modal .v-modal .reward-intro .avatar {
+      cursor: default !important;
+      width: 36px;
+      height: 36px;
+      margin-right: 10px;
+      display: inline-block;
+}
+.reward-note-modal .v-modal .reward-intro .intro {
+      margin-right: 5px;
+      font-weight: bold;
+      vertical-align: middle;
+}
+.reward-note-modal .v-modal .reward-intro i {
+      color: #EA6F5A;
+      vertical-align: middle;
+}
+.reward-note-modal .v-modal .main-inputs {
+    margin: 25px 0;
+}
+.reward-note-modal .v-modal .main-inputs .amount-group {
+      margin: 0 -5px;
+}
+.reward-note-modal .v-modal .main-inputs .amount-group input {
+        display: none;
+}
+.reward-note-modal .v-modal .main-inputs .amount-group input:checked + .option {
+        color: #EA6F5A;
+        border-color: #EA6F5A;
+}
+.reward-note-modal .v-modal .main-inputs .amount-group .custom-amount:checked + .option .custom-text {
+        opacity: 0;
+}
+.reward-note-modal .v-modal .main-inputs .amount-group .custom-amount:checked + .option .custom-amount-input {
+        opacity: 1;
+}
+.reward-note-modal .v-modal .main-inputs .amount-group .option {
+        position: relative;
+        margin: 0 5px 15px;
+        width: 156px;
+        height: 56px;
+        line-height: 54px;
+        border: 1px solid #E6E6E6;
+        border-radius: 4px;
+        font-weight: normal;
+        color: #999999;
+        cursor: pointer;
+}
+.reward-note-modal .v-modal .main-inputs .amount-group .option i {
+          font-size: 16px;
+          vertical-align: middle;
+}
+.reward-note-modal .v-modal .main-inputs .amount-group .option .amount {
+          font-size: 28px;
+          vertical-align: middle;
+}
+.reward-note-modal .v-modal .main-inputs .amount-group .option .piece {
+          font-size: 13px;
+          vertical-align: sub;
+}
+.reward-note-modal .v-modal .main-inputs .amount-group .option .custom-amount-input {
+          position: absolute;
+          top: 0;
+          z-index: -1;
+          width: 100%;
+          opacity: 0;
+}
+.reward-note-modal .v-modal .main-inputs .amount-group .option .custom-amount-input i {
+            position: absolute;
+            top: 0;
+            left: 10px;
+}
+.reward-note-modal .v-modal .main-inputs .amount-group .option .custom-amount-input .piece {
+            position: absolute;
+            top: 4px;
+            right: 10px;
+}
+.reward-note-modal .v-modal .main-inputs .amount-group .option .custom-amount-input input {
+            display: block;
+            margin: 0 auto;
+            width: 80px;
+            height: 54px;
+            line-height: 54px;
+            border: none;
+            font-size: 28px;
+            text-align: center;
+            background: transparent;
+            -moz-appearance: textfield;
+}
+.reward-note-modal .v-modal .main-inputs .amount-group .option .custom-amount-input input::-webkit-outer-spin-button, .reward-note-modal .v-modal .main-inputs .amount-group .option .custom-amount-input input::-webkit-inner-spin-button {
+              -webkit-appearance: none !important;
+}
+.reward-note-modal .v-modal .main-inputs .message {
+      padding: 15px 20px;
+      margin-bottom: 0;
+      font-size: 14px;
+      border: 1px solid #E6E6E6;
+      color: #333333;
+      border-radius: 4px;
+      background-color: rgba(180, 180, 180, 0.1);
+}
+.reward-note-modal .v-modal .main-inputs .message textarea {
+        width: 100%;
+        height: 44px;
+        padding: 0;
+        margin: 0;
+        resize: none;
+        background: none !important;
+        border: none !important;
+        -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+        -webkit-box-shadow: none;
+                box-shadow: none;
+}
+.reward-note-modal .v-modal .main-inputs .message textarea:focus {
+          outline: none;
+}
+.reward-note-modal .v-modal .reward-info .amount {
+    font-size: 28px;
+    font-weight: bold;
+    color: #EA6F5A;
+}
+.reward-note-modal .v-modal .reward-info .pay-method {
+    font-size: 14px;
+}
+.reward-note-modal .v-modal .reward-info .pay-method a {
+      color: #3194D0;
+}
+.reward-note-modal .v-modal .choose-pay {
+    margin: 0 -5px;
+}
+.reward-note-modal .v-modal .choose-pay input {
+      display: none;
+}
+.reward-note-modal .v-modal .choose-pay input:checked + .option {
+      color: #EA6F5A;
+      border-color: #EA6F5A;
+}
+.reward-note-modal .v-modal .choose-pay .option {
+      margin: 20px 5px 10px;
+      width: 156px;
+      height: 56px;
+      line-height: 54px;
+      text-align: center;
+      border: 1px solid #E6E6E6;
+      border-radius: 4px;
+      cursor: pointer;
+}
+.reward-note-modal .v-modal .choose-pay .option img {
+        height: 30px;
+}
+.reward-note-modal .v-modal .choose-pay .option img.day.alipay, .reward-note-modal .v-modal .choose-pay .option img.night.alipay {
+        min-width: 85px;
+}
+.reward-note-modal .v-modal .choose-pay .option img.day.wechat, .reward-note-modal .v-modal .choose-pay .option img.night.wechat {
+        min-width: 112px;
+}
+.reward-note-modal .v-modal .choose-pay .option img.night {
+        display: none;
+}
+.reward-note-modal .v-modal .choose-pay .tooltip {
+      width: 230px;
+}
+.reward-note-modal .v-modal .modal-footer {
+    padding: 0 15px 20px;
+    border: none;
+    background-color: transparent;
+    text-align: center;
+}
+.reward-note-modal .v-modal .modal-footer .btn {
+      padding: 8px 45px;
+      font-size: 24px;
+}
+.reward-note-modal .v-modal .btn-pay {
+    padding: 8px 25px;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #F5A623;
+}
+.weixin-pay, .success-pay {
+  text-align: center;
+}
+.weixin-pay .v-modal, .success-pay .v-modal {
+    width: 350px;
+}
+.weixin-pay .ic-successed, .success-pay .ic-successed {
+    font-size: 60px;
+    color: #3db922;
+}
+.weixin-pay h2, .weixin-pay h3, .success-pay h2, .success-pay h3 {
+    margin-bottom: 20px;
+    color: #333333;
+}
+.weixin-pay h2, .success-pay h2 {
+    margin: 0 0 40px 0;
+    font-size: 24px;
+}
+.weixin-pay .bind-text, .success-pay .bind-text {
+    position: relative;
+    margin-bottom: 30px;
+    font-size: 14px;
+    color: #999999;
+}
+.weixin-pay .bind-text:before, .weixin-pay .bind-text:after, .success-pay .bind-text:before, .success-pay .bind-text:after {
+      content: "";
+      border-top: 1px solid #999;
+      display: block;
+      position: absolute;
+      width: 40px;
+      top: 8px;
+}
+.weixin-pay .bind-text:before, .success-pay .bind-text:before {
+      left: 30px;
+}
+.weixin-pay .bind-text:after, .success-pay .bind-text:after {
+      right: 30px;
+}
+.weixin-pay .share-bind, .success-pay .share-bind {
+    display: block;
+    margin-bottom: 30px;
+}
+.weixin-pay .share-bind i, .success-pay .share-bind i {
+      margin-right: 4px;
+      font-size: 22px;
+      vertical-align: middle;
+}
+.weixin-pay .share-bind.wechat i, .success-pay .share-bind.wechat i {
+      color: #00BB29;
+}
+.weixin-pay .share-bind.weibo i, .success-pay .share-bind.weibo i {
+      color: #E05244;
+}
+.weixin-pay .wx-qr-code, .success-pay .wx-qr-code {
+    display: inline-block;
+}
+.weixin-pay .wx-qr-code img, .success-pay .wx-qr-code img {
+      margin: 0 auto;
+      padding: 10px;
+      width: 200px;
+      background-color: #ffffff;
+}
+.weixin-pay .pay-amount, .success-pay .pay-amount {
+    margin: 20px 0;
+    color: #787878;
+}
+.weixin-pay .pay-amount span, .success-pay .pay-amount span {
+      color: #F5A623;
+}
+</style><style type="text/css">
+@charset "UTF-8";
+/*
+ * 变量
+*/
+.v-modal-wrap {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  background-color: transparent;
+}
+.v-modal-wrap.modal-leave-active {
+    -webkit-transition: opacity 0.3s;
+    -o-transition: opacity 0.3s;
+    transition: opacity 0.3s;
+}
+.v-modal-wrap.modal-enter-active .v-modal-mask, .v-modal-wrap.modal-leave-active .v-modal-mask {
+    opacity: 0;
+}
+.v-modal-wrap.modal-enter-active .v-modal, .v-modal-wrap.modal-leave-active .v-modal {
+    -webkit-transform: translate(-50%, -70%);
+        -ms-transform: translate(-50%, -70%);
+            transform: translate(-50%, -70%);
+    opacity: 0;
+}
+.v-modal-wrap .v-modal-mask {
+    background-color: rgba(255, 255, 255, 0.7);
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    -webkit-transition: opacity 0.3s;
+    -o-transition: opacity 0.3s;
+    transition: opacity 0.3s;
+    opacity: 1;
+}
+.v-modal-wrap .v-modal {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    border-radius: 6px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    -webkit-box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+    -webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
+    transition: opacity 0.3s, -webkit-transform 0.3s;
+    -o-transition: opacity 0.3s, transform 0.3s;
+    transition: opacity 0.3s, transform 0.3s;
+    transition: opacity 0.3s, transform 0.3s, -webkit-transform 0.3s;
+    opacity: 1;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    overflow: hidden;
+}
+.v-modal-wrap .v-modal > header:before, .v-modal-wrap .v-modal > header:after, .v-modal-wrap .v-modal > main:before, .v-modal-wrap .v-modal > main:after, .v-modal-wrap .v-modal > footer:before, .v-modal-wrap .v-modal > footer:after {
+      content: '';
+      clear: both;
+      display: table;
+}
+.v-modal-wrap .v-modal > header {
+      padding: 20px;
+      border-bottom: 1px solid #F0F0F0;
+}
+.v-modal-wrap .v-modal > header h4 {
+        margin: 0;
+        color: #333;
+        text-align: left;
+}
+.v-modal-wrap .v-modal .close {
+      position: absolute;
+      right: 16px;
+      top: 20px;
+      font-size: 26px;
+      line-height: 20px;
+      color: rgba(0, 0, 0, 0.8);
+}
+.v-modal-wrap .v-modal .close:hover {
+        color: #000000;
+}
+.v-modal-wrap .v-modal > main {
+      padding: 20px 20px 20px 20px;
+      font-size: 15px;
+      color: #333;
+      -webkit-box-flex: 1;
+      -webkit-flex-grow: 1;
+          -ms-flex-positive: 1;
+              flex-grow: 1;
+      overflow-x: hidden;
+      overflow-y: auto;
+}
+.v-modal-wrap .v-modal > footer {
+      padding: 20px;
+      background-color: #fff;
+}
+.v-modal-wrap .v-modal > footer button {
+        padding: 0;
+        margin: 0;
+        background-color: transparent;
+        border: 0;
+        float: right;
+}
+.v-modal-wrap .v-modal > footer button:focus {
+          outline: 0;
+}
+.v-modal-wrap .v-modal > footer .submit {
+        padding: 4px 12px;
+        border: 1px solid;
+        border-radius: 20px;
+}
+.v-modal-wrap .v-modal > footer .cancel {
+        margin-top: 5px;
+}
+.v-modal-wrap .v-modal > footer .cancel:hover {
+          color: #333333;
+}
+.reader-night-mode .v-modal-wrap .v-modal-mask {
+  background-color: rgba(63, 63, 63, 0.7);
+}
+.reader-night-mode .v-modal-wrap .v-modal {
+  background-color: #3f3f3f;
+}
+.reader-night-mode .v-modal-wrap .v-modal header {
+    border-color: #2F2F2F;
+}
+.reader-night-mode .v-modal-wrap .v-modal header h4 {
+      color: #C8C8C8;
+}
+.reader-night-mode .v-modal-wrap .v-modal .close {
+    color: #C8C8C8;
+}
+.reader-night-mode .v-modal-wrap .v-modal .close:hover {
+      color: #ffffff;
+}
+.reader-night-mode .v-modal-wrap .v-modal main {
+    color: #C8C8C8;
+}
+.reader-night-mode .v-modal-wrap .v-modal footer {
+    background-color: #3f3f3f;
+}
+.reader-night-mode .v-modal-wrap .v-modal footer .cancel:hover {
+      color: #C8C8C8;
+}
+</style><style type="text/css">
+@charset "UTF-8";
+/*
+ * 变量
+*/
+.like[data-v-6ddd02c6] {
+  display: inline-block;
+}
+.like .like-group[data-v-6ddd02c6] {
+    position: relative;
+    padding: 13px 0 15px 0;
+    font-size: 0;
+    border: 1px solid #EA6F5A;
+    border-radius: 40px;
+}
+.like .like-group[data-v-6ddd02c6]:hover {
+      background-color: rgba(236, 97, 73, 0.05);
+}
+.like .like-group .btn-like[data-v-6ddd02c6] {
+      display: inline-block;
+      font-size: 19px;
+}
+.like .like-group .btn-like[data-v-6ddd02c6]:before {
+        content: '';
+        position: absolute;
+        left: 12px;
+        top: 2px;
+        width: 50px;
+        height: 50px;
+        background-image: url(//cdn2.jianshu.io/assets/web/like_animation_steps-62a00a7b52377d3069927cdb8e61fd34.png);
+        background-position: left;
+        background-repeat: no-repeat;
+        background-size: 1000px 50px;
+}
+.like .like-group .btn-like a[data-v-6ddd02c6] {
+        position: relative;
+        padding: 18px 30px 18px 55px;
+        color: #EA6F5A;
+}
+.like .like-group .modal-wrap[data-v-6ddd02c6] {
+      font-size: 18px;
+      border-left: 1px solid rgba(236, 97, 73, 0.4);
+      display: inline-block;
+      margin-left: -15px;
+}
+.like .like-group .modal-wrap a[data-v-6ddd02c6] {
+        color: #EA6F5A;
+        padding: 18px 26px 18px 18px;
+}
+.like .like-group.like-animation[data-v-6ddd02c6], .like .like-group.active[data-v-6ddd02c6] {
+      background-color: #EA6F5A;
+}
+.like .like-group.like-animation .btn-like a[data-v-6ddd02c6], .like .like-group.active .btn-like a[data-v-6ddd02c6] {
+        color: white;
+}
+.like .like-group.like-animation .modal-wrap[data-v-6ddd02c6], .like .like-group.active .modal-wrap[data-v-6ddd02c6] {
+        border-left: 1px solid white;
+}
+.like .like-group.like-animation .modal-wrap a[data-v-6ddd02c6], .like .like-group.active .modal-wrap a[data-v-6ddd02c6] {
+          color: white;
+}
+.like .like-group.like-animation .btn-like[data-v-6ddd02c6]:before {
+      -webkit-animation: likeBlast-data-v-6ddd02c6 0.6s 1 steps(19);
+              animation: likeBlast-data-v-6ddd02c6 0.6s 1 steps(19);
+      background-position: right;
+}
+@-webkit-keyframes likeBlast {
+0% {
+    background-position: left;
+}
+100% {
+    background-position: right;
+}
+}
+@keyframes likeBlast-data-v-6ddd02c6 {
+0% {
+    background-position: left;
+}
+100% {
+    background-position: right;
+}
+}
+.like .like-group.active .btn-like[data-v-6ddd02c6]:before {
+      background-position: right;
+}
+</style><style type="text/css">
+@charset "UTF-8";
+/*
+ * 变量
+*/
+.main {
+  position: relative;
+  margin: 0 auto;
+  padding: 0 0 30px 0;
+  width: 620px;
+}
+.main .title {
+    padding-left: 8px;
+    border-left: 3px solid #EA6F5A;
+    line-height: 1;
+    font-size: 15px;
+}
+.main .collection-settings {
+    position: absolute;
+    top: 2px;
+    right: 0;
+    font-size: 13px;
+    color: #A0A0A0;
+}
+.main .collection-settings span {
+      padding-left: 4px;
+}
+.main .include-collection {
+    width: 100%;
+    padding-top: 20px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+}
+.main .include-collection .item {
+      display: inline-block;
+      margin: 0 12px 12px 0;
+      min-height: 32px;
+      background-color: white;
+      border: 1px solid #DCDCDC;
+      border-radius: 4px;
+      vertical-align: top;
+      overflow: hidden;
+}
+.main .include-collection .item img {
+        width: 32px;
+        height: 32px;
+}
+.main .include-collection .item .name {
+        display: inline-block;
+        padding: 0 10px;
+        font-size: 14px;
+}
+.main .include-collection .add-collection-wrap {
+      margin: 0 12px 12px 0;
+}
+.main .include-collection .add-collection {
+      padding: 8px 12px;
+      font-size: 14px;
+      border: 1px solid #DCDCDC;
+      border-radius: 4px;
+}
+.main .include-collection .add-collection i {
+        margin-right: 4px;
+        color: #969696;
+}
+.main .recommend-note a {
+    position: relative;
+    margin: 20px 2px 0 0;
+    width: 200px;
+    height: 160px;
+    display: inline-block;
+}
+.main .recommend-note a:after {
+      content: "";
+      position: absolute;
+      width: 200px;
+      height: 160px;
+      border-radius: 0 0 4px 4px;
+      -webkit-box-shadow: inset 0px -80px 50px -22px rgba(0, 0, 0, 0.6);
+              box-shadow: inset 0px -80px 50px -22px rgba(0, 0, 0, 0.6);
+      top: 0;
+      left: 0;
+      z-index: 1;
+}
+.main .recommend-note .name {
+    position: absolute;
+    bottom: 40px;
+    left: 10px;
+    right: 10px;
+    font-size: 17px;
+    font-weight: bold;
+    color: #ffffff;
+    z-index: 2;
+}
+.main .recommend-note .author {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    z-index: 2;
+}
+.main .recommend-note .avatar {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+}
+.main .recommend-note .avatar img {
+      border-radius: 50%;
+}
+.main .recommend-note .author-name {
+    font-size: 12px;
+    color: #ffffff;
+    display: inline-block;
+    vertical-align: -1px;
+}
+.main .show-more {
+    margin: 0 12px 12px 0;
+    font-size: 14px;
+    color: #A0A0A0;
+}
+</style><style type="text/css">
+#featured-comment-list {
+  margin-top: 30px;
+  margin-bottom: -15px;
+}
+</style><style type="text/css">
+@charset "UTF-8";
+/*
+ * 变量
+*/
+.pc-bind-phone-modal .modal-content, .pc-bind-phone-modal .modal-body {
+  overflow: visible;
+}
+.pc-bind-phone-modal .modal-body {
+  padding-top: 14px;
+}
+.pc-bind-phone-modal .dropdown-menu {
+  max-height: 300px;
+  overflow: auto;
+}
+.pc-bind-phone-modal .dropdown-menu .tag {
+    background-color: #efefef;
+    color: #4A4A4A;
+    height: 28px;
+    line-height: 28px;
+    padding-left: 25px;
+    font-size: 12px;
+}
+.pc-bind-phone-modal .tips {
+  color: #999999;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 18px;
+  margin-bottom: 14px;
+}
+.pc-bind-phone-modal .tips a {
+    color: #3194D0;
+}
+.reader-night-mode .pc-bind-phone-modal .dropdown-menu .tag {
+  background-color: #2F2F2F;
+  color: #999999;
+}
+</style><style type="text/css">
+@charset "UTF-8";
+/*
+ * 变量
+*/
+.tips-card-loading[data-v-f3bf5228], .tips-card[data-v-f3bf5228] {
+  width: 460px;
+  position: relative;
+  left: 0;
+  top: 0;
+  border-radius: 6px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background-color: #ffffff;
+  -webkit-box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+  border: 1px solid #d9d9d9;
+}
+.tips-card-loading[data-v-f3bf5228] {
+  height: 200px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+}
+.tips-card-loading div[data-v-f3bf5228] {
+    background-color: #EAEAEA;
+}
+.tips-card-loading .avatar[data-v-f3bf5228] {
+    width: 72px !important;
+    height: 72px !important;
+    border-radius: 50%;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+}
+.tips-card-loading .name[data-v-f3bf5228] {
+    width: 120px;
+    height: 20px;
+    position: absolute;
+    left: 110px;
+    top: 31px;
+}
+.tips-card-loading .content[data-v-f3bf5228] {
+    position: absolute;
+    left: 110px;
+    top: 62px;
+    width: 238px;
+    height: 39.2px;
+    background-color: transparent;
+}
+.tips-card-loading .content .text[data-v-f3bf5228], .tips-card-loading .content .text-delay[data-v-f3bf5228] {
+      height: 14px;
+      position: absolute;
+      left: 0;
+      width: 100%;
+}
+.tips-card-loading .content .text[data-v-f3bf5228] {
+      top: 2px;
+      -webkit-animation: loading-data-v-f3bf5228 1s ease-in-out infinite;
+      animation: loading-data-v-f3bf5228 1s ease-in-out infinite;
+}
+.tips-card-loading .content .text-delay[data-v-f3bf5228] {
+      bottom: 3px;
+      -webkit-animation: loading-data-v-f3bf5228 1s ease-in-out -0.5s infinite;
+      animation: loading-data-v-f3bf5228 1s ease-in-out -0.5s infinite;
+}
+@keyframes loading-data-v-f3bf5228 {
+0% {
+    width: 60%;
+}
+50% {
+    width: 100%;
+}
+100% {
+    width: 60%;
+}
+}
+@-webkit-keyframes loading {
+0% {
+    width: 60%;
+}
+50% {
+    width: 100%;
+}
+100% {
+    width: 60%;
+}
+}
+.tips-card-loading .meta[data-v-f3bf5228] {
+    width: 30px;
+    height: 42px;
+    position: absolute;
+    bottom: 20px;
+    background-color: transparent;
+}
+.tips-card-loading .meta.meta-1[data-v-f3bf5228] {
+      left: 30px;
+}
+.tips-card-loading .meta.meta-2[data-v-f3bf5228] {
+      left: 90px;
+}
+.tips-card-loading .meta.meta-3[data-v-f3bf5228] {
+      left: 150px;
+}
+.tips-card-loading .meta .count[data-v-f3bf5228], .tips-card-loading .meta .type[data-v-f3bf5228] {
+      position: absolute;
+}
+.tips-card-loading .meta .count[data-v-f3bf5228] {
+      left: -5px;
+      top: 6px;
+      height: 18px;
+      width: 40px;
+}
+.tips-card-loading .meta .type[data-v-f3bf5228] {
+      left: 1px;
+      bottom: 2px;
+      height: 13px;
+      width: 28px;
+}
+.tips-card-loading .button[data-v-f3bf5228] {
+    position: absolute;
+    bottom: 17px;
+    width: 90px;
+    height: 40px;
+    border-radius: 40px;
+}
+.tips-card-loading .message[data-v-f3bf5228] {
+    right: 120px;
+}
+.tips-card-loading .follow[data-v-f3bf5228] {
+    right: 17px;
+}
+.tips-card[data-v-f3bf5228] {
+  z-index: 10;
+}
+.tips-card .card-content[data-v-f3bf5228] {
+    padding: 20px 20px 0 20px;
+}
+.tips-card .card-content .summary[data-v-f3bf5228] {
+      padding: 8px 0 20px 90px;
+      min-height: 92px;
+      position: relative;
+}
+.tips-card .card-content .summary .avatar[data-v-f3bf5228] {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 72px;
+        height: 72px;
+        cursor: pointer;
+        border-radius: 50%;
+        background-color: #EAEAEA;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+}
+.tips-card .card-content .summary .name[data-v-f3bf5228] {
+        height: 26px;
+        margin-right: 3px;
+        margin-bottom: 8px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: row;
+            -ms-flex-direction: row;
+                flex-direction: row;
+        -webkit-box-pack: start;
+        -webkit-justify-content: flex-start;
+            -ms-flex-pack: start;
+                justify-content: flex-start;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+            -ms-flex-align: center;
+                align-items: center;
+}
+.tips-card .card-content .summary .name .nickname[data-v-f3bf5228] {
+          color: #333333;
+          font-size: 19px;
+          font-weight: bold;
+          overflow: hidden;
+          -o-text-overflow: ellipsis;
+             text-overflow: ellipsis;
+          white-space: nowrap;
+          cursor: pointer;
+}
+.tips-card .card-content .summary .name .sex[data-v-f3bf5228], .tips-card .card-content .summary .name .badge[data-v-f3bf5228] {
+          -webkit-flex-shrink: 0;
+              -ms-flex-negative: 0;
+                  flex-shrink: 0;
+          display: inline-block;
+}
+.tips-card .card-content .summary .name .sex[data-v-f3bf5228] {
+          font-size: 19px;
+          width: 19px;
+          margin: 0 4px;
+}
+.tips-card .card-content .summary .intro[data-v-f3bf5228] {
+        overflow: hidden;
+        -o-text-overflow: ellipsis;
+           text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        margin-bottom: 12px;
+        font-size: 14px;
+        line-height: 1.5;
+        color: #333333;
+}
+.tips-card .card-content .summary .intro.block[data-v-f3bf5228] {
+          color: #999999;
+}
+.tips-card .card-content .summary .list .item[data-v-f3bf5228] {
+        display: block;
+        margin-bottom: 5px;
+        font-size: 13px;
+        color: #999999;
+        cursor: pointer;
+        overflow: hidden;
+        -o-text-overflow: ellipsis;
+           text-overflow: ellipsis;
+        white-space: nowrap;
+}
+.tips-card .card-content .summary .list .item i[data-v-f3bf5228] {
+          margin-right: 2px;
+}
+.tips-card .card-footer[data-v-f3bf5228] {
+    border-top: 1px solid #F0F0F0;
+    padding: 15px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    overflow: hidden;
+    _zoom: 1;
+}
+.tips-card .card-footer .profile[data-v-f3bf5228] {
+      width: 198px;
+      overflow: hidden;
+      _zoom: 1;
+      float: left;
+}
+.tips-card .card-footer .profile div[data-v-f3bf5228] {
+        float: left;
+        width: 60px;
+        height: 44px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+            -ms-flex-direction: column;
+                flex-direction: column;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+            -ms-flex-align: center;
+                align-items: center;
+}
+.tips-card .card-footer .profile div span[data-v-f3bf5228] {
+          display: block;
+          width: 100%;
+          text-align: center;
+}
+.tips-card .card-footer .profile div .type[data-v-f3bf5228] {
+          font-size: 13px;
+          color: #999999;
+}
+.tips-card .card-footer .profile div .count[data-v-f3bf5228] {
+          font-size: 18px;
+          color: #333333;
+}
+.tips-card .card-footer .social[data-v-f3bf5228] {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: row;
+          -ms-flex-direction: row;
+              flex-direction: row;
+      -webkit-box-pack: end;
+      -webkit-justify-content: flex-end;
+          -ms-flex-pack: end;
+              justify-content: flex-end;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+          -ms-flex-align: center;
+              align-items: center;
+      float: right;
+      overflow: hidden;
+      _zoom: 1;
+}
+.tips-card .card-footer .social .message[data-v-f3bf5228] {
+        border: 1px solid rgba(59, 194, 29, 0.7);
+        color: #42C02E;
+        margin: 0 10px 0 16px;
+        font-size: 15px;
+        padding: 8px 0;
+        width: 90px;
+        border-radius: 40px;
+        text-align: center;
+        cursor: pointer;
+        float: left;
+        -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+}
+.tips-card .card-footer .social .message[data-v-f3bf5228]:hover {
+          border: 1px solid #42C02E;
+          color: #42C02E;
+          background-color: rgba(59, 194, 29, 0.05);
+}
+.tips-card .card-footer .social .user-follow-button[data-v-f3bf5228] {
+        font-size: 15px;
+        padding: 8px 0;
+        width: 100px;
+}
+.arrow[data-v-f3bf5228] {
+  position: absolute;
+  width: 100%;
+  height: 10px;
+  left: 0;
+  z-index: 20;
+  pointer-events: none;
+}
+.arrow i[data-v-f3bf5228] {
+    position: absolute;
+    left: 50%;
+    margin: 0;
+    margin-left: -10px;
+    border-width: 10px;
+    border-color: transparent;
+    padding: 0;
+}
+.arrow em[data-v-f3bf5228] {
+    display: block;
+    position: absolute;
+    left: -9px;
+    border-width: 9px;
+    border-color: transparent;
+    margin: 0;
+    padding: 0;
+}
+.arrow-type-top[data-v-f3bf5228] {
+  bottom: 1px;
+}
+.arrow-type-top i[data-v-f3bf5228] {
+    border-top-color: #d9d9d9;
+    border-style: solid dashed dashed;
+    top: 0;
+}
+.arrow-type-top em[data-v-f3bf5228] {
+    border-style: solid dashed dashed;
+    border-top-color: #ffffff;
+    top: -10px;
+}
+.arrow-type-bottom[data-v-f3bf5228] {
+  top: 1px;
+}
+.arrow-type-bottom i[data-v-f3bf5228] {
+    border-bottom-color: #d9d9d9;
+    border-style: dashed dashed solid;
+    top: -10px;
+}
+.arrow-type-bottom em[data-v-f3bf5228] {
+    border-style: dashed dashed solid;
+    border-bottom-color: #ffffff;
+    top: -8px;
+}
+.reader-night-mode .tips-card-loading[data-v-f3bf5228] {
+  background-color: #3F3F3F;
+  border-color: #2F2F2F;
+}
+.reader-night-mode .tips-card-loading .avatar[data-v-f3bf5228], .reader-night-mode .tips-card-loading .name[data-v-f3bf5228], .reader-night-mode .tips-card-loading .text[data-v-f3bf5228], .reader-night-mode .tips-card-loading .text-delay[data-v-f3bf5228], .reader-night-mode .tips-card-loading .count[data-v-f3bf5228], .reader-night-mode .tips-card-loading .type[data-v-f3bf5228], .reader-night-mode .tips-card-loading .button[data-v-f3bf5228] {
+    background-color: #545454;
+}
+.reader-night-mode .tips-card[data-v-f3bf5228] {
+  background-color: #3F3F3F;
+  border-color: #2F2F2F;
+}
+.reader-night-mode .tips-card .card-content .summary .name .nickname[data-v-f3bf5228] {
+    color: #C8C8C8;
+}
+.reader-night-mode .tips-card .card-content .summary .name .nickname[data-v-f3bf5228]:hover {
+      color: #ffffff;
+}
+.reader-night-mode .tips-card .card-content .summary .intro[data-v-f3bf5228] {
+    color: #C8C8C8;
+}
+.reader-night-mode .tips-card .card-footer[data-v-f3bf5228] {
+    border-top-color: #2F2F2F;
+}
+.reader-night-mode .tips-card .card-footer .profile div .count[data-v-f3bf5228] {
+      color: #C8C8C8;
+}
+.reader-night-mode .arrow.arrow-type-top em[data-v-f3bf5228] {
+  border-top-color: #3F3F3F;
+}
+.reader-night-mode .arrow.arrow-type-top i[data-v-f3bf5228] {
+  border-top-color: #2F2F2F;
+}
+.reader-night-mode .arrow.arrow-type-bottom em[data-v-f3bf5228] {
+  border-bottom-color: #3F3F3F;
+}
+.reader-night-mode .arrow.arrow-type-bottom i[data-v-f3bf5228] {
+  border-bottom-color: #2F2F2F;
+}
+</style><style type="text/css">
+.v-tooltip-container,
+.v-tooltip-content {
+  display: inline-block;
+}
+.v-tooltip-container {
+  position: relative;
+}
+.v-tooltip-container .v-tooltip-content {
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+}
+.v-tooltip-container .v-tooltip-wrap {
+    position: absolute;
+}
+.v-tooltip-container .v-tooltip-wrap.v-tooltip-wrap-top {
+      bottom: 100%;
+      left: 50%;
+      -webkit-transform: translateX(-50%);
+          -ms-transform: translateX(-50%);
+              transform: translateX(-50%);
+      padding-bottom: 10px;
+}
+.v-tooltip-container .v-tooltip-wrap.v-tooltip-wrap-bottom {
+      top: 100%;
+      left: 50%;
+      -webkit-transform: translateX(-50%);
+          -ms-transform: translateX(-50%);
+              transform: translateX(-50%);
+      padding-top: 10px;
+}
+.v-tooltip-container .v-tooltip-wrap.v-tooltip-wrap-left {
+      top: 50%;
+      right: 100%;
+      -webkit-transform: translateY(-50%);
+          -ms-transform: translateY(-50%);
+              transform: translateY(-50%);
+      padding-right: 10px;
+}
+.v-tooltip-container .v-tooltip-wrap.v-tooltip-wrap-right {
+      top: 50%;
+      left: 100%;
+      -webkit-transform: translateY(-50%);
+          -ms-transform: translateY(-50%);
+              transform: translateY(-50%);
+      padding-left: 10px;
+}
+.v-tooltip-container .v-tooltip-wrap.v-tooltip-wrap-top-start {
+      bottom: 100%;
+      left: 0;
+      padding-bottom: 10px;
+}
+.v-tooltip-container .v-tooltip-wrap.v-tooltip-wrap-top-end {
+      bottom: 100%;
+      right: 0;
+      padding-bottom: 10px;
+}
+.v-tooltip-container .v-tooltip-wrap.v-tooltip-wrap-bottom-start {
+      top: 100%;
+      left: 0;
+      padding-top: 10px;
+}
+.v-tooltip-container .v-tooltip-wrap.v-tooltip-wrap-bottom-end {
+      top: 100%;
+      right: 0;
+      padding-top: 10px;
+}
+.v-tooltip-container .v-tooltip-wrap.v-tooltip-wrap-left-start {
+      top: 0;
+      right: 100%;
+      padding-right: 10px;
+}
+.v-tooltip-container .v-tooltip-wrap.v-tooltip-wrap-left-end {
+      bottom: 0;
+      right: 100%;
+      padding-right: 10px;
+}
+.v-tooltip-container .v-tooltip-wrap.v-tooltip-wrap-right-start {
+      top: 0;
+      left: 100%;
+      padding-left: 10px;
+}
+.v-tooltip-container .v-tooltip-wrap.v-tooltip-wrap-right-end {
+      bottom: 0;
+      left: 100%;
+      padding-left: 10px;
+}
+</style><style type="text/css">
+@charset "UTF-8";
+/*
+ * 变量
+*/
+.like-button[data-v-cdecbe24] {
+  position: relative;
+  padding-left: 23px;
+}
+.like-button[data-v-cdecbe24]:before {
+    content: '';
+    position: absolute;
+    left: -16px;
+    top: -16px;
+    width: 50px;
+    height: 50px;
+    background-image: url(//cdn2.jianshu.io/assets/web/zan_animation_steps-8d65a474b670eb6a022516f4e0b8e9a4.png);
+    background-position: left;
+    background-repeat: no-repeat;
+    background-size: 1050px 50px;
+}
+.like-button[data-v-cdecbe24]:hover:before {
+    background-position: -50px;
+}
+.like-button.zan-animation span[data-v-cdecbe24], .like-button.active span[data-v-cdecbe24] {
+    color: #333333;
+}
+body.reader-night-mode .like-button.zan-animation span[data-v-cdecbe24], body.reader-night-mode .like-button.active span[data-v-cdecbe24] {
+      color: #C8C8C8;
+}
+.like-button.zan-animation[data-v-cdecbe24]:before {
+    -webkit-animation: likeBlast-data-v-cdecbe24 0.6s 1 steps(19);
+            animation: likeBlast-data-v-cdecbe24 0.6s 1 steps(19);
+    background-position: right;
+}
+@-webkit-keyframes likeBlast {
+0% {
+    background-position: -50px;
+}
+100% {
+    background-position: right;
+}
+}
+@keyframes likeBlast-data-v-cdecbe24 {
+0% {
+    background-position: -50px;
+}
+100% {
+    background-position: right;
+}
+}
+.like-button.active[data-v-cdecbe24]:before {
+    background-position: right;
+}
+</style><style type="text/css">
+@charset "UTF-8";
+/*
+ * 变量
+*/
+.recommend-note {
+  margin-bottom: 20px;
+}
+.recommend-note .meta, .recommend-note .list {
+    width: 620px;
+    margin: 0 auto;
+}
+.recommend-note .meta .title {
+    padding-left: 8px;
+    border-left: 3px solid #EA6F5A;
+    line-height: 1;
+    font-size: 15px;
+}
+.recommend-note .meta .title .more {
+      float: right;
+      font-size: 14px;
+      color: #A0A0A0;
+}
+.recommend-note .list {
+    margin-top: 20px;
+}
+.recommend-note .list .note {
+      display: block;
+      margin-bottom: 25px;
+      padding: 0 0 25px 0;
+      border-bottom: 1px solid #DDDDDD;
+}
+.recommend-note .list .note.have-img {
+        min-height: 136px;
+}
+.recommend-note .list .note.have-img.no-user .description {
+          -webkit-line-clamp: 3;
+}
+.recommend-note .list .note .cover {
+        float: right;
+        margin: -5px 0 0 15px;
+        width: 150px;
+        height: 120px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-radius: 6px;
+}
+.recommend-note .list .note .title {
+        display: inherit;
+        margin-bottom: 4px;
+        font-size: 18px;
+        line-height: 27px;
+        font-weight: bold;
+        color: #333333;
+        overflow: hidden;
+        -o-text-overflow: ellipsis;
+           text-overflow: ellipsis;
+        white-space: nowrap;
+}
+.recommend-note .list .note .title:hover {
+          text-decoration: underline;
+}
+.recommend-note .list .note .title:visited {
+          color: #999999;
+}
+.recommend-note .list .note .description {
+        margin-bottom: 12px;
+        font-size: 13px;
+        line-height: 23px;
+        color: #333333;
+        overflow: hidden;
+        -o-text-overflow: ellipsis;
+           text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+}
+.recommend-note .list .note .author .avatar {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin-right: 3px;
+        border-radius: 50%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        vertical-align: middle;
+}
+.recommend-note .list .note .author .name {
+        font-size: 13px;
+        color: #333333;
+        vertical-align: middle;
+}
+</style></head>
+
+  <!-- 只给10%的用户添加代码 -->
+  <!-- ###第四范式-智能推荐：代码直接复制 无需修改参数### -->
+  <!-- ###功能：上报内容并反馈用户行为### -->
+  <!--
+  -->
+  <body lang="zh-CN" class="reader-black-font" style="position: static;">
+    <!-- 全局顶部导航栏 -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="width-limit">
+    <!-- 左上方 Logo -->
+    <a class="logo" href="https://www.jianshu.com/"><img src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/nav-logo-4c7bbafe27adc892f3046e6978459bac.png" alt="Nav logo"></a>
+
+    <!-- 右上角 -->
+      <!-- 未登录显示登录/注册/写文章 -->
+      <a class="btn write-btn" target="_blank" href="https://www.jianshu.com/writer#/">
+        <i class="iconfont ic-write"></i>写文章
+</a>      <a class="btn sign-up" id="sign_up" href="https://www.jianshu.com/sign_up">注册</a>
+      <a class="btn log-in" id="sign_in" href="https://www.jianshu.com/sign_in">登录</a>
+
+    <!-- 如果用户登录，显示下拉菜单 -->
+
+    <div class="style-mode"><a class="style-mode-btn"><i class="iconfont ic-navigation-mode"></i></a> <div class="popover-modal" style="left: 0px; display: none;"><div class="meta"><i class="iconfont ic-navigation-night"></i><span>夜间模式</span></div> <div class="switch day-night-group"><a class="switch-btn">开</a> <a class="switch-btn active">关</a></div> <hr> <div class="switch font-family-group"><a class="switch-btn font-song">宋体</a> <a class="switch-btn font-hei active">黑体</a></div> <div class="switch"><a class="switch-btn active">简</a> <a class="switch-btn">繁</a></div></div></div>
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" aria-expanded="false">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="nav navbar-nav">
+            <li class="tab ">
+              <a href="https://www.jianshu.com/">
+                <span class="menu-text">首页</span><i class="iconfont ic-navigation-discover menu-icon"></i>
+</a>            </li>
+            <li class="tab ">
+              <a id="web-nav-app-download-btn" class="app-download-btn" href="https://www.jianshu.com/apps?utm_medium=desktop&amp;utm_source=navbar-apps"><span class="menu-text">下载App</span><i class="iconfont ic-navigation-download menu-icon"></i></a>
+            </li>
+          <li class="search">
+            <form target="_blank" action="https://www.jianshu.com/search" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="✓">
+              <input type="text" name="q" id="q" value="" autocomplete="off" placeholder="搜索" class="search-input">
+              <a class="search-btn" href="javascript:void(null)"><i class="iconfont ic-search"></i></a>
+</form>          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+    
+<div class="note">
+  <div id="note-fixed-ad-container">
+      <a target="_blank" href="https://www.jianshu.com/apps/redirect?utm_source=side-banner-click" id="web-note-ad-fixed"><span class="close">×</span></a>
+    <div id="fixed-ad-container">
+      <iframe scrolling="no" style="width: 100%; height: 180px; border: 0px;"></iframe><span id="youdao-fixed-ad" class="ad-badge" style="visibility: visible;">广告</span>
+      <div id="_so_pdsBy_0"></div>
+    </div>
+  </div>
+  <div class="post">
+    <div class="article">
+        <h1 class="title">史上最全CentOS6离线安装部署Cloudera Manager5.9.3</h1>
+
+        <!-- 作者区域 -->
+        <div class="author">
+          <a class="avatar" href="https://www.jianshu.com/u/5bf2763194fd">
+            <img src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/15-a7ac401939dd4df837e3bbf82abaa2a8.jpg" alt="96">
+</a>          <div class="info">
+            <span class="name"><a href="https://www.jianshu.com/u/5bf2763194fd">荒野雄兵</a></span>
+            <!-- 关注用户按钮 -->
+            <a class="btn btn-success follow"><i class="iconfont ic-follow"></i><span>关注</span></a>
+            <!-- 文章数据信息 -->
+            <div class="meta">
+              <!-- 如果文章更新时间大于发布时间，那么使用 tooltip 显示更新时间 -->
+                <span class="publish-time" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="最后编辑于 2017.11.24 11:39">2017.11.24 11:38*</span>
+              <span class="wordage">字数 3560</span>
+            <span class="views-count">阅读 772</span><span class="comments-count">评论 14</span><span class="likes-count">喜欢 3</span></div>
+          </div>
+          <!-- 如果是当前作者，加入编辑按钮 -->
+        </div>
+
+
+        <!-- 文章内容 -->
+        <div data-note-content="" class="show-content">
+          <div class="show-content-free">
+            <h2>前言</h2>
+<h3>概述</h3>
+<p>在公司的服务器上搭建了5遍，<br>
+第一遍看别人的文章自己搭，<br>
+第二遍全部铲了重新搭边搭边写文章，安装完后发现CM使用的是默认的内嵌数据库<br>
+第三遍把Cloudera Manager卸载重新安装，使用Mysql作为CM的数据库<br>
+第四遍全部铲了重新搭验证<br>
+第五遍全部铲了把内存增加到32G重新搭验证</p>
+<h3>Cloudera Manager版本选择</h3>
+<p><strong>Cloudera公司一般都是3个月发布一次版本</strong>，<br>
+但是如果发布之后发现此版本存在重大Bug，<br>
+下一个版本会提前发布<br>
+笔者写这篇文章的时候Cloudera Manager已经出到了5.13.0<br>
+5.11、5.12版本可能存在Bug，不敢用，<br>
+5.13版本从发布到现在刚刚一个月，不敢用，<br>
+5.10版从5.10.0到5.10.1中间只隔了2个月<br>
+保守起见这里选择5.9.3<br>
+当然你选择5.10.x版本的应该也没有问题</p>
+<h3>系统配置</h3>
+<table>
+<thead>
+<tr>
+<th>IP地址</th>
+<th>主机名</th>
+<th>内存</th>
+<th>所安装的服务</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>192.168.60.54</td>
+<td>cm01.spark.com</td>
+<td>20G</td>
+<td>cloudera-scm-agent</td>
+</tr>
+<tr>
+<td>192.168.60.55</td>
+<td>cm02.spark.com</td>
+<td>20G</td>
+<td>mysql，cloudera-scm-server，cloudera-scm-agent</td>
+</tr>
+<tr>
+<td>192.168.60.56</td>
+<td>cm03.spark.com</td>
+<td>20G</td>
+<td>cloudera-scm-agent</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>后面添加大数据的服务这里不显示</li>
+<li>我这里是直接在服务器上的虚拟机上安装的，内存比较充足，如果你是在自己本地的虚拟机上安装的话步骤也是梊的，只不过是安装好以后，很多地方会以为内存的原因而报错</li>
+</ul>
+<h3>安装包准备</h3>
+<ol>
+<li>开始部署之前先下载安装包，等准备工作做完了，安装包也下载好了。</li>
+</ol>
+<ul>
+<li><p>Cloudera Manager<br>
+<a href="https://link.jianshu.com/?t=http://archive.cloudera.com/cm5/repo-as-tarball/5.9.3/cm5.9.3-centos6.tar.gz" target="_blank" rel="nofollow">cm5.9.3-centos6.tar.gz</a><br>
+其他版本的点<a href="https://link.jianshu.com/?t=http://archive.cloudera.com/cm5/cm/5/" target="_blank" rel="nofollow">这里</a></p></li>
+<li><p>Parcel服务组件包<br>
+<a href="https://link.jianshu.com/?t=http://archive.cloudera.com/cdh5/parcels/5.9.3/CDH-5.9.3-1.cdh5.9.3.p0.4-el6.parcel" target="_blank" rel="nofollow">CDH-5.9.3-1.cdh5.9.3.p0.4-el6.parcel</a>（这个最大有1G多）<br>
+<a href="https://link.jianshu.com/?t=http://archive.cloudera.com/cdh5/parcels/5.9.3/CDH-5.9.3-1.cdh5.9.3.p0.4-el6.parcel.sha1" target="_blank" rel="nofollow">CDH-5.9.3-1.cdh5.9.3.p0.4-el6.parcel.sha1</a><br>
+其他版本的点<a href="https://link.jianshu.com/?t=http://archive.cloudera.com/cdh5/parcels" target="_blank" rel="nofollow">这里</a></p></li>
+<li><p>manifest文件<br>
+<a href="https://link.jianshu.com/?t=http://archive.cloudera.com/cdh5/parcels/5.9.3/manifest.json" target="_blank" rel="nofollow">mainfest</a></p></li>
+<li><p>安装文件<br>
+<a href="https://link.jianshu.com/?t=http://archive.cloudera.com/cm5/installer/5.9.3/cloudera-manager-installer.bin" target="_blank" rel="nofollow">cloudera-manager-installer.bin</a><br>
+其他版本点<a href="https://link.jianshu.com/?t=http://archive.cloudera.com/cm5/installer/" target="_blank" rel="nofollow">这里</a></p></li>
+</ul>
+<ol start="2">
+<li>其他还需要准备的安装包：</li>
+</ol>
+<ul>
+<li>JDK1.8安装包——我这里用的是jdk1.8.0_65，rpm包</li>
+<li>Mysql5.6.x——也是rpm包</li>
+<li>Mysql驱动包——没有的话可以点这里<a href="https://link.jianshu.com/?t=http://central.maven.org/maven2/mysql/mysql-connector-java/5.1.44/mysql-connector-java-5.1.44.jar" target="_blank" rel="nofollow">下载</a>
+</li>
+</ul>
+<ol start="3">
+<li>安装包先上传到Linux<br>
+只需要上传到主节点（cloudera-scm-server所在的服务器）就行，上传目录随意，后面会再进行操作</li>
+</ol>
+<h2>一、 大数据平台集群环境准备</h2>
+<p>文章主要包括以下部分：</p>
+<ol>
+<li>集群环境准备</li>
+<li>配置ssh无密钥访问</li>
+<li>开启NTP服务</li>
+<li>配置yum源</li>
+<li>安装Mysql</li>
+<li>安装Cloudera Manager</li>
+<li>添加大数据服务组件</li>
+</ol>
+<ul>
+<li>注意</li>
+</ul>
+<ol>
+<li>以下所有步骤如无特别说明都是要在所有服务器上都执行一遍</li>
+<li>亲测，以下所有的准备工作都要做，没有的话的话后面出现各种问题还得再补上</li>
+</ol>
+<h3>1. 配置静态IP</h3>
+<pre class="hljs undefined"><code>vim /etc/sysconfig/network-scripts/ifcfg-eth0
+</code></pre>
+<p>内容如下:</p>
+<pre class="hljs cpp"><code class="cpp">DEVICE=eth0
+HWADDR=<span class="hljs-number">00</span>:<span class="hljs-number">50</span>:<span class="hljs-number">56</span>:<span class="hljs-number">93</span>:<span class="hljs-number">24</span>:<span class="hljs-number">7</span>E
+TYPE=Ethernet
+UUID=<span class="hljs-number">8</span>ca9d801-a91a<span class="hljs-number">-4365</span><span class="hljs-number">-8b</span>08-d54c6c3050d0
+ONBOOT=yes
+NM_CONTROLLED=yes
+BOOTPROTO=<span class="hljs-keyword">static</span>
+IPADDR=<span class="hljs-number">192.168</span><span class="hljs-number">.60</span><span class="hljs-number">.56</span>
+NETMASK=<span class="hljs-number">255.255</span><span class="hljs-number">.255</span><span class="hljs-number">.0</span>
+GATEWAY=<span class="hljs-number">192.168</span><span class="hljs-number">.60</span><span class="hljs-number">.1</span>
+DNS1=<span class="hljs-number">202.96</span><span class="hljs-number">.209</span><span class="hljs-number">.5</span>
+DNS2=<span class="hljs-number">202.96</span><span class="hljs-number">.209</span><span class="hljs-number">.133</span>
+</code></pre>
+<p>重启网卡</p>
+<pre class="hljs undefined"><code>service network restart
+</code></pre>
+<h3>2. 修改主机名</h3>
+<p>3台服务器分别修改为<br>
+cm01.spark.com<br>
+cm02.spark.com<br>
+cm03.spark.com</p>
+<pre class="hljs bash"><code class="bash">vim /etc/sysconfig/network
+
+<span class="hljs-comment">## 修改为以下内容</span>
+NETWORKING=yes
+HOSTNAME=cm01.spark.com
+</code></pre>
+<div class="image-package">
+<div class="image-container" style="max-width: 546px; max-height: 195px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 35.709999999999994%;"></div>
+<div class="image-view" data-width="546" data-height="195"><img data-original-src="//upload-images.jianshu.io/upload_images/6275468-bb063d474f8dd1ca.png" data-original-width="546" data-original-height="195" data-original-format="image/png" data-original-filesize="24111" class="" src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/6275468-bb063d474f8dd1ca.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">第1部分_大数据环境准备_02修改主机名.png</div>
+</div>
+<h3>3. hosts文件主机名与IP地址映射</h3>
+<p>另外你的电脑最好也添加一下，路径是：<br>
+C:\Windows\System32\drivers\etc\hosts</p>
+<pre class="hljs bash"><code class="bash">vim /etc/hosts
+
+<span class="hljs-comment">## 添加以下内容</span>
+192.168.60.54 cm01.spark.com cm01
+192.168.60.55 cm02.spark.com cm02
+192.168.60.56 cm03.spark.com cm03
+</code></pre>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 296px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 36.1%;"></div>
+<div class="image-view" data-width="820" data-height="296"><img data-original-src="//upload-images.jianshu.io/upload_images/6275468-a22f8ee3dbf11749.png" data-original-width="820" data-original-height="296" data-original-format="image/png" data-original-filesize="35493" class="" src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/6275468-a22f8ee3dbf11749.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">第1部分_大数据环境准备_03hosts文件主机名映射IP地址.png</div>
+</div>
+<h3>4. 禁用IPV6</h3>
+<p>命令行执行以下命令</p>
+<pre class="hljs ruby"><code class="ruby"><span class="hljs-comment">## 禁用IPv6</span>
+echo <span class="hljs-string">"                   "</span> <span class="hljs-meta">&gt;&gt; </span>/etc/modprobe.d/dist.conf
+echo <span class="hljs-string">"alias net-pf-10 off"</span> <span class="hljs-meta">&gt;&gt; </span>/etc/modprobe.d/dist.conf
+echo <span class="hljs-string">"alias ipv6 off"</span> <span class="hljs-meta">&gt;&gt; </span>/etc/modprobe.d/dist.conf
+
+<span class="hljs-comment">## 查看是否追加成功</span>
+tail /etc/modprobe.d/dist.conf
+</code></pre>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 350px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 40.89%;"></div>
+<div class="image-view" data-width="856" data-height="350"><img data-original-src="//upload-images.jianshu.io/upload_images/6275468-bef9fc89d2e2fa54.png" data-original-width="856" data-original-height="350" data-original-format="image/png" data-original-filesize="21448" class="" src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/6275468-bef9fc89d2e2fa54.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">第1部分_大数据环境准备_04禁用IPV6.png</div>
+</div>
+<h3>5. 关闭防火墙</h3>
+<pre class="hljs bash"><code class="bash"><span class="hljs-comment"># 关闭防火墙</span>
+service iptables stop
+
+<span class="hljs-comment"># 永久性关闭防火墙</span>
+chkconfig iptables off
+
+<span class="hljs-comment"># 查看防火墙状态：</span>
+service iptables status
+
+</code></pre>
+<div class="image-package">
+<div class="image-container" style="max-width: 662px; max-height: 191px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 28.849999999999998%;"></div>
+<div class="image-view" data-width="662" data-height="191"><img data-original-src="//upload-images.jianshu.io/upload_images/6275468-14b76794be80b3b2.png" data-original-width="662" data-original-height="191" data-original-format="image/png" data-original-filesize="17211" class="" src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/6275468-14b76794be80b3b2.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">第1部分_大数据环境准备_05关闭防火墙.png</div>
+</div><br>
+<p>生产上根据实际情况进行设置</p>
+
+<h3>6. 禁用Selinux</h3>
+<p>重启机器才会生效，这里先不重启</p>
+<pre class="hljs bash"><code class="bash">vim /etc/sysconfig/selinux
+
+<span class="hljs-comment">## 修改配置项：</span>
+SELINUX=disabled
+</code></pre>
+<div class="image-package">
+<div class="image-container" style="max-width: 690px; max-height: 396px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 57.38999999999999%;"></div>
+<div class="image-view" data-width="690" data-height="396"><img data-original-src="//upload-images.jianshu.io/upload_images/6275468-21768c14225d958f.png" data-original-width="690" data-original-height="396" data-original-format="image/png" data-original-filesize="39897" class="" src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/6275468-21768c14225d958f.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">第1部分_大数据环境准备_06禁用Selinux.png</div>
+</div>
+<h3>7. 卸载系统自带的JDK</h3>
+<pre class="hljs bash"><code class="bash">rpm -qa|grep java
+
+<span class="hljs-comment"># xxx yyy zzz为你要卸载的插件，插件之间以空格隔开</span>
+rpm -e --nodeps xxx yyy zzz
+</code></pre>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 325px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 36.64%;"></div>
+<div class="image-view" data-width="887" data-height="325"><img data-original-src="//upload-images.jianshu.io/upload_images/6275468-c446cc65987eb8bd.png" data-original-width="887" data-original-height="325" data-original-format="image/png" data-original-filesize="45458" class="" src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/6275468-c446cc65987eb8bd.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">第1部分_大数据环境准备_07卸载系统自带的JDK.png</div>
+</div>
+<h3>8. 设置文件打开数目和用户最大进程数</h3>
+<pre class="hljs bash"><code class="bash"><span class="hljs-comment">## 查看文件打开数目</span>
+<span class="hljs-built_in">ulimit</span> -a
+<span class="hljs-comment">## 查看用户最大进程数</span>
+<span class="hljs-built_in">ulimit</span> -u
+<span class="hljs-comment">## 设置用户最大进程数</span>
+vim /etc/security/limits.conf
+
+<span class="hljs-comment">## 结尾添加以下内容</span>
+*       soft    nofile          32768
+*       hard    nofile          1048576
+*       soft    nproc           65536
+*       hard    nproc           unlimited
+*       soft    memlock         unlimited
+*       hard    memlock         unlimited
+
+</code></pre>
+<div class="image-package">
+<div class="image-container" style="max-width: 490px; max-height: 437px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 89.18%;"></div>
+<div class="image-view" data-width="490" data-height="437"><img data-original-src="//upload-images.jianshu.io/upload_images/6275468-5908c465be142b72.png" data-original-width="490" data-original-height="437" data-original-format="image/png" data-original-filesize="11945" class="" src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/6275468-5908c465be142b72.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">第1部分_大数据环境准备_08设置文件打开数目和用户最大进程数.png</div>
+</div>
+<h3>9. 统一时区为东八区（GMT+0800）</h3>
+<pre class="hljs undefined"><code>cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+</code></pre>
+<h3>10. Linux操作系统系统语言采用英文版</h3>
+<pre class="hljs bash"><code class="bash"><span class="hljs-comment"># 查看操作系统系统语言</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-variable">$LANG</span>
+
+<span class="hljs-comment"># 修改操作系统系统语言</span>
+vim /etc/sysconfig/i18n
+LANG=<span class="hljs-string">"en_US.UTF-8"</span>
+</code></pre>
+<p>用中文的话后面使用Oozie的时候会发生乱码</p>
+<h3>11. 关闭透明大页面</h3>
+<p>执行命令</p>
+<pre class="hljs ruby"><code class="ruby"><span class="hljs-comment"># 临时关闭透明大页面（立即生效）</span>
+echo never &gt; <span class="hljs-regexp">/sys/kernel</span><span class="hljs-regexp">/mm/redhat</span>_transparent_hugepage/defrag
+echo never &gt; <span class="hljs-regexp">/sys/kernel</span><span class="hljs-regexp">/mm/redhat</span>_transparent_hugepage/enabled
+
+<span class="hljs-comment"># 永久关闭透明大页面（重启生效）</span>
+echo <span class="hljs-string">'            '</span> <span class="hljs-meta">&gt;&gt; </span>/etc/rc.local
+echo <span class="hljs-string">'# 关闭大透明页面'</span> <span class="hljs-meta">&gt;&gt; </span>/etc/rc.local
+echo <span class="hljs-string">'echo never &gt; /sys/kernel/mm/redhat_transparent_hugepage/defrag'</span> <span class="hljs-meta">&gt;&gt; </span>/etc/rc.local
+echo <span class="hljs-string">'echo never &gt; /sys/kernel/mm/redhat_transparent_hugepage/enabled'</span> <span class="hljs-meta">&gt;&gt; </span>/etc/rc.local
+
+<span class="hljs-comment"># 查看是否已经关闭</span>
+cat /sys/kernel/mm/redhat_transparent_hugepage/defrag
+cat /sys/kernel/mm/redhat_transparent_hugepage/enabled
+</code></pre>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 159px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 18.55%;"></div>
+<div class="image-view" data-width="857" data-height="159"><img data-original-src="//upload-images.jianshu.io/upload_images/6275468-26c1e116cf2c9204.png" data-original-width="857" data-original-height="159" data-original-format="image/png" data-original-filesize="13001" class="" src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/6275468-26c1e116cf2c9204.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">第1部分_大数据环境准备_11关闭透明大页面.png</div>
+</div>
+<h3>12. 修改swappiness</h3>
+<pre class="hljs ruby"><code class="ruby"><span class="hljs-comment"># 临时修改</span>
+sysctl -w vm.swappiness=<span class="hljs-number">1</span>
+
+<span class="hljs-comment"># 永久修改</span>
+echo <span class="hljs-string">"vm.swappiness=1"</span> <span class="hljs-meta">&gt;&gt; </span>/etc/sysctl.conf
+</code></pre>
+<div class="image-package">
+<div class="image-container" style="max-width: 666px; max-height: 117px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 17.57%;"></div>
+<div class="image-view" data-width="666" data-height="117"><img data-original-src="//upload-images.jianshu.io/upload_images/6275468-ed9e1dec39015edf.png" data-original-width="666" data-original-height="117" data-original-format="image/png" data-original-filesize="7323" class="" src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/6275468-ed9e1dec39015edf.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">第1部分_大数据环境准备_12修改swappiness.png</div>
+</div>
+<h3>13. 安装JDK1.8</h3>
+<pre class="hljs css"><code class="css"><span class="hljs-selector-tag">rpm</span> <span class="hljs-selector-tag">-ivh</span> <span class="hljs-selector-tag">jdk-8u65-linux-x64</span><span class="hljs-selector-class">.rpm</span>
+</code></pre>
+<ol>
+<li>配置JAVA_HOME</li>
+</ol>
+<pre class="hljs bash"><code class="bash"><span class="hljs-comment">#修改环境变量</span>
+vim /etc/profile
+
+<span class="hljs-comment"># 末尾追加以下内容</span>
+<span class="hljs-built_in">export</span> JAVA_HOME=/usr/java/default
+<span class="hljs-built_in">export</span> PATH=<span class="hljs-variable">$JAVA_HOME</span>/bin:<span class="hljs-variable">$PATH</span>
+<span class="hljs-built_in">export</span> CLASSPATH=.:<span class="hljs-variable">$JAVA_HOME</span>/lib/dt.jar:<span class="hljs-variable">$JAVA_HOME</span>/lib/tools.jar
+
+<span class="hljs-comment"># 查看是否安装成功</span>
+java -version
+</code></pre>
+<ol start="2">
+<li>重新加载环境变量使配置生效</li>
+</ol>
+<pre class="hljs bash"><code class="bash"><span class="hljs-built_in">source</span> /etc/profile
+
+<span class="hljs-comment"># 查看是否配置成功</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-variable">$JAVA_HOME</span>
+</code></pre>
+<h3>14. 重启服务器</h3>
+<pre class="hljs undefined"><code>reboot
+</code></pre>
+<h2>二、配置ssh无密钥访问</h2>
+<h3>1. 生成密钥</h3>
+<pre class="hljs bash"><code class="bash"><span class="hljs-comment"># 生成密钥</span>
+ssh-keygen -t rsa
+<span class="hljs-comment"># 执行后一路回车</span>
+</code></pre>
+<div class="image-package">
+<div class="image-container" style="max-width: 680px; max-height: 529px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 77.79%;"></div>
+<div class="image-view" data-width="680" data-height="529"><img data-original-src="//upload-images.jianshu.io/upload_images/6275468-bec42b5927592491.png" data-original-width="680" data-original-height="529" data-original-format="image/png" data-original-filesize="28269" class="" src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/6275468-bec42b5927592491.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">第2部分_配置ssh无密钥访问_01生成密钥.png</div>
+</div>
+<h3>2. 复制公钥</h3>
+<pre class="hljs objectivec"><code class="objectivec">cd ~/.ssh/
+cp id_rsa.pub authorized_keys
+
+<span class="hljs-meta"># 下面的命令是把其他主机的公钥复制到本机</span>
+ssh-<span class="hljs-keyword">copy</span>-<span class="hljs-keyword">id</span> -i cm01
+ssh-<span class="hljs-keyword">copy</span>-<span class="hljs-keyword">id</span> -i cm02
+ssh-<span class="hljs-keyword">copy</span>-<span class="hljs-keyword">id</span> -i cm03
+</code></pre>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 660px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 94.3%;"></div>
+<div class="image-view" data-width="824" data-height="777"><img data-original-src="//upload-images.jianshu.io/upload_images/6275468-c611504216caf027.png" data-original-width="824" data-original-height="777" data-original-format="image/png" data-original-filesize="75870" class="" src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/6275468-c611504216caf027.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">第2部分_配置ssh无密钥访问_02复制公钥.png</div>
+</div>
+<h3>3. 测试连接</h3>
+<pre class="hljs undefined"><code>ssh cm01
+ssh cm02
+ssh cm03
+</code></pre>
+<div class="image-package">
+<div class="image-container" style="max-width: 591px; max-height: 219px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 37.059999999999995%;"></div>
+<div class="image-view" data-width="591" data-height="219"><img data-original-src="//upload-images.jianshu.io/upload_images/6275468-8d5777de7fcbf628.png" data-original-width="591" data-original-height="219" data-original-format="image/png" data-original-filesize="16391" class="" src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/6275468-8d5777de7fcbf628.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">第2部分_配置ssh无密钥访问_03测试连接.png</div>
+</div>
+<ul>
+<li>注意<br>
+此步执行完以后最好三个服务器的客户端连接全部关了重新连接，<br>
+因为<code>ssh cm0x</code>命令执行完后如果没有返回来的话会造成不同客户端连接窗口混乱</li>
+</ul>
+<h2>三、开启NTP服务</h2>
+<p>Centos6默认安装ntp服务</p>
+<h3>1. 所有服务器屏蔽默认server</h3>
+<pre class="hljs bash"><code class="bash"><span class="hljs-comment"># 修改ntp配置文件</span>
+vim /etc/ntp.conf
+
+<span class="hljs-comment"># 屏蔽默认server 将配置文件里下面的内容注释掉</span>
+<span class="hljs-comment">#server 0.centos.pool.ntp.org iburst</span>
+<span class="hljs-comment">#server 1.centos.pool.ntp.org iburst</span>
+<span class="hljs-comment">#server 2.centos.pool.ntp.org iburst</span>
+<span class="hljs-comment">#server 3.centos.pool.ntp.org iburst</span>
+</code></pre>
+<h3>2. 配置ntp主服务器</h3>
+<p>我这里是cm02.spark.com服务器</p>
+<pre class="hljs bash"><code class="bash"><span class="hljs-comment"># 修改ntp配置文件</span>
+vim /etc/ntp.conf
+
+<span class="hljs-comment">#添加如下内容</span>
+server 127.127.1.0
+fudge 127.127.1.0 stratum 10
+</code></pre>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 342px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 46.85%;"></div>
+<div class="image-view" data-width="730" data-height="342"><img data-original-src="//upload-images.jianshu.io/upload_images/6275468-e35827afbed7928f.png" data-original-width="730" data-original-height="342" data-original-format="image/png" data-original-filesize="19412" class="" src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/6275468-e35827afbed7928f.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">第3部分_开启NTP服务_01配置NTP主服务器.png</div>
+</div>
+<h3>3. 配置ntp从服务器</h3>
+<pre class="hljs bash"><code class="bash"><span class="hljs-comment"># 修改ntp配置文件</span>
+vim /etc/ntp.conf
+
+<span class="hljs-comment"># 同步cm02.spark.com的时间</span>
+server cm02.spark.com
+</code></pre>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 320px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 43.6%;"></div>
+<div class="image-view" data-width="734" data-height="320"><img data-original-src="//upload-images.jianshu.io/upload_images/6275468-a0d7b316d3d0c211.png" data-original-width="734" data-original-height="320" data-original-format="image/png" data-original-filesize="18902" class="" src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/6275468-a0d7b316d3d0c211.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">第3部分_开启NTP服务_02配置NTP从服务器.png</div>
+</div>
+<h3>4. 启动所有服务器上的服务</h3>
+<pre class="hljs bash"><code class="bash"><span class="hljs-comment"># 启动ntp服务器</span>
+service ntpd start
+
+<span class="hljs-comment"># 设置开机启动ntp服务器</span>
+chkconfig  ntpd on
+</code></pre>
+<h3>5. 验证ntp服务器是否开启</h3>
+<pre class="hljs bash"><code class="bash"><span class="hljs-comment"># 验证ntp服务器是否开启</span>
+ntpq -p
+</code></pre>
+<p>主服务器：</p>
+<br>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 228px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 28.46%;"></div>
+<div class="image-view" data-width="801" data-height="228"><img data-original-src="//upload-images.jianshu.io/upload_images/6275468-b74ba446f0ac784a.png" data-original-width="801" data-original-height="228" data-original-format="image/png" data-original-filesize="14476" class="" src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/6275468-b74ba446f0ac784a.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">第3部分_开启NTP服务_03验证ntp主服务器是否开启.png</div>
+</div>
+<p>从服务器：</p>
+<br>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 225px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 28.16%;"></div>
+<div class="image-view" data-width="799" data-height="225"><img data-original-src="//upload-images.jianshu.io/upload_images/6275468-4d2ca5478c099f62.png" data-original-width="799" data-original-height="225" data-original-format="image/png" data-original-filesize="13904" class="" src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/6275468-4d2ca5478c099f62.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">第3部分_开启NTP服务_04验证ntp从服务器是否开启.png</div>
+</div>
+<ul>
+<li>注意<br>
+NTP服务器默认是5到10分钟从主服务器更新一次时间</li>
+</ul>
+<h2>四、配置yum源</h2>
+<ul>
+<li>绝大部分安装都都从本地yum源安装，少部分从网络装，当然你也可以配置全部从本地安装</li>
+</ul>
+<h3>1. 配置网络yum源为阿里云源</h3>
+<p>三台服务器都需要配置</p>
+<ol>
+<li>备份原来的配置</li>
+</ol>
+<pre class="hljs undefined"><code>mkdir -p /etc/yum.repos.d/bak
+mv /etc/yum.repos.d/*.repo /etc/yum.repos.d/bak
+</code></pre>
+<ol start="2">
+<li>下载新的CentOS-Base.repo 到/etc/yum.repos.d/</li>
+</ol>
+<pre class="hljs cpp"><code class="cpp">wget -O /etc/yum.repos.d/CentOS-Base.repo http:<span class="hljs-comment">//mirrors.aliyun.com/repo/Centos-6.repo</span>
+</code></pre>
+<ol start="3">
+<li>生成缓存</li>
+</ol>
+<pre class="hljs undefined"><code>yum makecache
+</code></pre>
+<h3>2. 搭建本地yum源</h3>
+<ul>
+<li><strong>只在cm02.spark.com服务器上配置就行</strong></li>
+</ul>
+<ol>
+<li>开启HTTP服务</li>
+</ol>
+<pre class="hljs bash"><code class="bash"><span class="hljs-comment"># 安装httpd服务(如果已安装跳过)</span>
+yum install httpd
+
+<span class="hljs-comment"># 启动httpd服务</span>
+service httpd start
+
+<span class="hljs-comment"># 设置开机启动</span>
+chkconfig httpd on
+</code></pre>
+<ol start="2">
+<li>
+<p>浏览器验证是否启动成功<br>
+输入地址:  <a href="https://link.jianshu.com/?t=http://cm02.spark.com/" target="_blank" rel="nofollow">http://cm02.spark.com/</a><br>
+httpd服务默认80端口，浏览器访问如果是80端口的话可以不输入端口号<br>
+</p>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 345px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 37.830000000000005%;"></div>
+<div class="image-view" data-width="912" data-height="345"><img data-original-src="//upload-images.jianshu.io/upload_images/6275468-5135b932dd51f027.png" data-original-width="912" data-original-height="345" data-original-format="image/png" data-original-filesize="42741" class="" src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/6275468-5135b932dd51f027.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">第4部分_配置yum源-01验证httpd服务是否启动成功.png</div>
+</div>
+<p></p>
+</li>
+<li><p>将Cloudera Manager安装包和Parcel包放在指定的目录并解压</p></li>
+</ol>
+<pre class="hljs bash"><code class="bash"><span class="hljs-comment">## 所有安装包都放在/opt/software/cloudera目录下</span>
+mkdir -p /opt/software/cloudera/CDH-5.9.3
+
+mv CDH-5.9.3-1.cdh5.9.3.p0.4-el6.parcel /opt/software/cloudera/CDH-5.9.3
+mv CDH-5.9.3-1.cdh5.9.3.p0.4-el6.parcel.sha1 /opt/software/cloudera/CDH-5.9.3
+mv manifest.json /opt/software/cloudera/CDH-5.9.3
+
+tar -zxf cm5.9.3-centos6.tar.gz -C /opt/software/cloudera
+
+<span class="hljs-comment">## 其实这个放哪儿都行</span>
+mv cloudera-manager-installer.bin /opt/software/cloudera
+</code></pre>
+<ul>
+<li>httpd服务添加安装包的软链接</li>
+</ul>
+<pre class="hljs javascript"><code class="javascript">ln -s /opt/software/cloudera/cm /<span class="hljs-keyword">var</span>/www/html/cm
+ln -s /opt/software/cloudera/CDH<span class="hljs-number">-5.9</span><span class="hljs-number">.3</span>/ <span class="hljs-regexp">/var/</span>www/html/cdh
+</code></pre>
+<ol start="4">
+<li>添加ClouderaManager和parcel源</li>
+</ol>
+<pre class="hljs objectivec"><code class="objectivec">vim /etc/yum.repos.d/cloudera-manager.repo
+<span class="hljs-meta"># 添加如下内容</span>
+[cloudera-manager]
+name=Cloudera Manager, Version <span class="hljs-number">5.9</span><span class="hljs-number">.3</span>
+baseurl=http:<span class="hljs-comment">//cm02.spark.com/cm/5</span>
+gpgcheck=<span class="hljs-number">0</span>
+
+vim /etc/yum.repos.d/cm.repo
+<span class="hljs-meta"># 添加如下内容</span>
+[cm]
+name=cm
+baseurl=http:<span class="hljs-comment">//cm02.spark.com/cm/5</span>
+enabled=<span class="hljs-number">1</span>
+gpgcheck=<span class="hljs-number">0</span>
+</code></pre>
+<div class="image-package">
+<div class="image-container" style="max-width: 509px; max-height: 268px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 52.65%;"></div>
+<div class="image-view" data-width="509" data-height="268"><img data-original-src="//upload-images.jianshu.io/upload_images/6275468-c24d406caf204370.png" data-original-width="509" data-original-height="268" data-original-format="image/png" data-original-filesize="14035" class="" src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/6275468-c24d406caf204370.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">第4部分_配置yum源-02配置ClouderaManager的yum源.png</div>
+</div>
+<h2>五、安装Mysql数据库</h2>
+<p>这里Mysql安装在cm02.spark.com服务器<br>
+Mysql版本这里是5.6.x。5.7.x的安装与此不一样，如果你是5.7的话这部分看其他的教程</p>
+<h3>1. 安装Mysql</h3>
+<p>附上Mysql的下载地址：<br>
+<a href="https://link.jianshu.com/?t=https://dev.mysql.com/downloads/mysql/" target="_blank" rel="nofollow">https://dev.mysql.com/downloads/mysql/</a><br>
+</p><div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 462px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 42.35%;"></div>
+<div class="image-view" data-width="1091" data-height="462"><img data-original-src="//upload-images.jianshu.io/upload_images/6275468-902e26d108ba2dfa.png" data-original-width="1091" data-original-height="462" data-original-format="image/png" data-original-filesize="95783" class="" src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/6275468-902e26d108ba2dfa.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">第5部分_安装Mysql数据库_05官网下载Mysql5.6.png</div>
+</div><p></p>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 476px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 68.08999999999999%;"></div>
+<div class="image-view" data-width="1122" data-height="764"><img data-original-src="//upload-images.jianshu.io/upload_images/6275468-08ae69c50b4287cd.png" data-original-width="1122" data-original-height="764" data-original-format="image/png" data-original-filesize="124711" class="" src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/6275468-08ae69c50b4287cd.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">第5部分_安装Mysql数据库_06根据操作系统选择Mysql版本.png</div>
+</div>
+<ol>
+<li>解压tar包，并添加执行权限</li>
+</ol>
+<pre class="hljs bash"><code class="bash"><span class="hljs-comment"># 解压tar包</span>
+tar xvf MySQL-5.6.38-1.el6.x86_64.rpm-bundle.tar -C /opt/software/mysql/
+
+<span class="hljs-built_in">cd</span> /opt/software/mysql/
+<span class="hljs-comment"># 添加执行权限</span>
+chmod u+x *.rpm
+</code></pre>
+<ol start="2">
+<li>安装MySQL-shared-compat替换系统自带的mysql-libs</li>
+</ol>
+<pre class="hljs bash"><code class="bash"><span class="hljs-comment"># 先查看一下是否有系统自带的mysql插件，我这里是有的</span>
+rpm -qa | grep -i mysql
+
+<span class="hljs-comment"># 先安装MySQL-shared-compat</span>
+rpm -ivh MySQL-shared-compat-5.6.38-1.el6.x86_64.rpm
+
+<span class="hljs-comment"># 再卸载mysql-libs</span>
+yum remove mysql-libs
+</code></pre>
+<ol start="3">
+<li>安装mysql</li>
+</ol>
+<pre class="hljs css"><code class="css"># 安装<span class="hljs-selector-tag">MySQL-server</span>
+<span class="hljs-selector-tag">rpm</span> <span class="hljs-selector-tag">-ivh</span> <span class="hljs-selector-tag">MySQL-server-5</span><span class="hljs-selector-class">.6</span><span class="hljs-selector-class">.38-1</span><span class="hljs-selector-class">.el6</span><span class="hljs-selector-class">.x86_64</span><span class="hljs-selector-class">.rpm</span> 
+
+# 安装<span class="hljs-selector-tag">MySQL-client</span>
+<span class="hljs-selector-tag">rpm</span> <span class="hljs-selector-tag">-ivh</span> <span class="hljs-selector-tag">MySQL-client-5</span><span class="hljs-selector-class">.6</span><span class="hljs-selector-class">.38-1</span><span class="hljs-selector-class">.el6</span><span class="hljs-selector-class">.x86_64</span><span class="hljs-selector-class">.rpm</span> 
+</code></pre>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 482px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 49.74%;"></div>
+<div class="image-view" data-width="969" data-height="482"><img data-original-src="//upload-images.jianshu.io/upload_images/6275468-1ae433303c52c475.png" data-original-width="969" data-original-height="482" data-original-format="image/png" data-original-filesize="50452" class="" src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/6275468-1ae433303c52c475.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">大数据环境准备0114-安装Mysql.png</div>
+</div>
+<h3>2. 配置Mysql</h3>
+<p>安装完以后Mysql生成一个随机密码保存在/root/.mysql_secret</p>
+<pre class="hljs bash"><code class="bash"><span class="hljs-comment"># 启动Mysql</span>
+service mysql start
+<span class="hljs-comment"># 不用再配置开机启动了，安装包已经设置Mysql开机启动</span>
+
+<span class="hljs-comment"># 查看Mysql密码</span>
+more ~/.mysql_secret
+
+<span class="hljs-comment"># 进行Mysql的基本配置</span>
+/usr/bin/mysql_secure_installation --user=mysql
+</code></pre>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 592px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 84.59%;"></div>
+<div class="image-view" data-width="1032" data-height="873"><img data-original-src="//upload-images.jianshu.io/upload_images/6275468-771ef4f1ff0c3feb.png" data-original-width="1032" data-original-height="873" data-original-format="image/png" data-original-filesize="95859" class="" src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/6275468-771ef4f1ff0c3feb.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">第5部分_安装Mysql数据库_01配置Mysql.png</div>
+</div>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 779px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 111.33999999999999%;"></div>
+<div class="image-view" data-width="732" data-height="815"><img data-original-src="//upload-images.jianshu.io/upload_images/6275468-8658691702576dd6.png" data-original-width="732" data-original-height="815" data-original-format="image/png" data-original-filesize="50347" class="" src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/6275468-8658691702576dd6.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">第5部分_安装Mysql数据库_02配置Mysql.png</div>
+</div>
+<h3>3.开启远程登陆</h3>
+<pre class="hljs python"><code class="python"><span class="hljs-comment"># 命令行登陆Mysql</span>
+mysql -uroot -p123123
+
+<span class="hljs-comment"># 添加远程登陆权限</span>
+Grant all privileges on *.* to <span class="hljs-string">'root'</span>@<span class="hljs-string">'%'</span> identified by <span class="hljs-string">'123123'</span> <span class="hljs-keyword">with</span> grant option;
+
+<span class="hljs-comment"># 重新加载权限</span>
+flush privileges;
+</code></pre>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 476px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 52.42%;"></div>
+<div class="image-view" data-width="908" data-height="476"><img data-original-src="//upload-images.jianshu.io/upload_images/6275468-6350d661ec035ce7.png" data-original-width="908" data-original-height="476" data-original-format="image/png" data-original-filesize="30191" class="" src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/6275468-6350d661ec035ce7.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">第5部分_安装Mysql数据库_03开启远程登陆.png</div>
+</div>
+<p>本地通过Navicat远程连接Mysql:</p>
+<br>
+<div class="image-package">
+<div class="image-container" style="max-width: 532px; max-height: 682px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 128.2%;"></div>
+<div class="image-view" data-width="532" data-height="682"><img data-original-src="//upload-images.jianshu.io/upload_images/6275468-cbb86145b00dac8a.png" data-original-width="532" data-original-height="682" data-original-format="image/png" data-original-filesize="50012" class="" src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/6275468-cbb86145b00dac8a.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">第5部分_安装Mysql数据库_04本地通过NavicatForMysql连接.png</div>
+</div>
+<h3>4. 将Mysql驱动包放入Java 共享目录</h3>
+<p>三台服务器都要做</p>
+<pre class="hljs ruby"><code class="ruby"><span class="hljs-comment">#重命令Mysql驱动包，把版本号去掉</span>
+mv mysql-connector-java-<span class="hljs-number">5.1</span>.<span class="hljs-number">44</span>-bin.jar mysql-connector-java.jar
+
+<span class="hljs-comment"># 将jar包移到java共享目录下</span>
+mv mysql-connector-java.jar /usr/share/java/
+
+<span class="hljs-comment"># 将Mysql驱动包分发到另外两台服务器</span>
+scp /usr/share/java/mysql-connector-java.jar root@cm01<span class="hljs-symbol">:/usr/share/java</span>
+scp /usr/share/java/mysql-connector-java.jar root@cm03<span class="hljs-symbol">:/usr/share/java</span>
+</code></pre>
+<ul>
+<li>没有这一步的话后面Cloudera Manager连接Mysql的时候找不到Mysql驱动包</li>
+</ul>
+<h3>5. 创建数据库及用户并添加权限</h3>
+<pre class="hljs python"><code class="python">create database <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> exists amon default charset utf8 collate utf8_general_ci;
+create database <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> exists rman default charset utf8 collate utf8_general_ci;
+create database <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> exists nav default charset utf8 collate utf8_general_ci;
+create database <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> exists navms default charset utf8 collate utf8_general_ci;
+create database <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> exists sentry default charset utf8 collate utf8_general_ci;
+create database <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> exists hue default charset utf8 collate utf8_general_ci;
+create database <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> exists hive;
+create database <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> exists oozie;
+
+grant all on amon.* to <span class="hljs-string">'amon'</span>@<span class="hljs-string">'%'</span> identified by <span class="hljs-string">'amon'</span> <span class="hljs-keyword">with</span> grant option;
+grant all on rman.* to <span class="hljs-string">'rman'</span>@<span class="hljs-string">'%'</span> identified by <span class="hljs-string">'rman'</span> <span class="hljs-keyword">with</span> grant option;
+grant all on nav.* to <span class="hljs-string">'nav'</span>@<span class="hljs-string">'%'</span> identified by <span class="hljs-string">'nav'</span> <span class="hljs-keyword">with</span> grant option;
+grant all on navms.* to <span class="hljs-string">'navms'</span>@<span class="hljs-string">'%'</span> identified by <span class="hljs-string">'navms'</span> <span class="hljs-keyword">with</span> grant option;
+grant all on sentry.* to <span class="hljs-string">'sentry'</span>@<span class="hljs-string">'%'</span> identified by <span class="hljs-string">'sentry'</span> <span class="hljs-keyword">with</span> grant option;
+grant all on hue.* to <span class="hljs-string">'hue'</span>@<span class="hljs-string">'%'</span> identified by <span class="hljs-string">'hue'</span> <span class="hljs-keyword">with</span> grant option;
+grant all on hive.* to <span class="hljs-string">'hive'</span>@<span class="hljs-string">'%'</span> identified by <span class="hljs-string">'hive'</span> <span class="hljs-keyword">with</span> grant option;
+grant all on oozie.* to <span class="hljs-string">'oozie'</span>@<span class="hljs-string">'%'</span> identified by <span class="hljs-string">'oozie'</span> <span class="hljs-keyword">with</span> grant option;
+
+flush privileges;
+</code></pre>
+<ul>
+<li>创建的数据库具体哪个是做什么用的，在对Cloudera Manager配置外部数据库的时候会有说明</li>
+<li>hive和oozie数据库使用默认的latin1编码， 否则会报错：创建索引时超长度限制。</li>
+</ul>
+<h2>六、安装Cloudera Manager</h2>
+<ul>
+<li>注意<br>
+此部分只在cm02.spark.com上执行</li>
+</ul>
+<h3>1. 安装Cloudera Manager</h3>
+<pre class="hljs bash"><code class="bash"><span class="hljs-comment"># cloudera-manager-installer.bin可以在任意目录下，它会去yum上查找相应的安装文件</span>
+<span class="hljs-comment"># 给cloudera-manager-installer.bin添加执行权限</span>
+chmod u+x cloudera-manager-installer.bin 
+
+<span class="hljs-comment"># 安装</span>
+./cloudera-manager-installer.bin --skip_repo_package=1
+</code></pre>
+<p>正常情况下Next、Next、Yes、Next、Yes即安装成功，会有如下提示信息表示安装成功了，比较简单这里就不再给过多的截图了(我每一步都截图了)，如果中间有什么问题的话可以去看下日志，日志的位置是<code>/var/log//var/log/cloudera-*/</code><br>
+这个安装包主要做以下的工作：</p>
+<ol>
+<li>安装cloudera-scm-server服务</li>
+<li>安装cloudera-scm-server-db服务这个是CM内置的数据库</li>
+<li>创建cloudera-scm用户</li>
+<li>安装CM内置的JDK（1.7）</li>
+<li>下载一些依赖的插件比如说gcc</li>
+</ol>
+<ul>
+<li>
+<p>其他教程里说还需要创建cloudera-scm用户这里是不用的，执行这个安装程序的时候会自动创建<br>
+安装成功界面</p>
+<br>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 445px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 63.690000000000005%;"></div>
+<div class="image-view" data-width="1099" data-height="700"><img data-original-src="//upload-images.jianshu.io/upload_images/6275468-198124f6547feec0.png" data-original-width="1099" data-original-height="700" data-original-format="image/png" data-original-filesize="60203" class="" src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/6275468-198124f6547feec0.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">大数据环境准备0117-CM安装成功界面.png</div>
+</div>
+</li>
+</ul>
+<p>此时会在系统会添加两个服务：</p>
+<ul>
+<li>cloudera-scm-server<br>
+这个是Cloudera Manager的服务</li>
+<li>cloudera-scm-server-db<br>
+这个是Cloudera Manager内嵌的数据库服务</li>
+</ul>
+<pre class="hljs bash"><code class="bash"><span class="hljs-comment"># 查看添加的Cloudera服务</span>
+rpm -qa | grep cloudera
+
+<span class="hljs-comment"># 查看服务运行状态</span>
+service cloudera-scm-server status
+service cloudera-scm-server-db status
+</code></pre>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 247px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 32.37%;"></div>
+<div class="image-view" data-width="763" data-height="247"><img data-original-src="//upload-images.jianshu.io/upload_images/6275468-0fff05a8547ee9e1.png" data-original-width="763" data-original-height="247" data-original-format="image/png" data-original-filesize="23449" class="" src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/6275468-0fff05a8547ee9e1.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">第6部分_安装ClouderaManager-08CM安装成功添加的服务服务.png</div>
+</div>
+<h3>2. 配置Mysql数据库</h3>
+<ul>
+<li><strong>Cloudera Manager配置外部的数据库需要对外部数据库进行一些配置</strong></li>
+</ul>
+<ol>
+<li>ClouderaManager官网对Mysql配置<br>
+<a href="https://link.jianshu.com/?t=https://www.cloudera.com/documentation/enterprise/latest/topics/cm_ig_mysql.html#cmig_topic_5_5_2" target="_blank" rel="nofollow">Cloudera官网配置Mysql数据库链接</a><br>
+上面的链接是英文的，我这边仔细阅读过了，<br>
+它的大致意思是：</li>
+</ol>
+<ul>
+<li>需要配置Mysql的搜索引擎为InnoDB</li>
+<li>Mysql安装好以后默认的缓冲区和内存比较小，ClouderaManager会非常频繁地连接Mysql需要改一下,具体根据你集群的大小决定</li>
+<li>配置最大连接数</li>
+<li>二进制日志对于CM不是必须的，但是对Mysql有好处，这个你随意<br>
+说完上面一大串以后下面给了集群数量在50台以下的Mysql的配置的例子</li>
+</ul>
+<pre class="hljs php"><code class="php">[mysqld]
+transaction-isolation = READ-COMMITTED
+<span class="hljs-comment"># Disabling symbolic-links is recommended to prevent assorted security risks;</span>
+<span class="hljs-comment"># to do so, uncomment this line:</span>
+<span class="hljs-comment"># symbolic-links = 0</span>
+
+key_buffer_size = <span class="hljs-number">32</span>M
+max_allowed_packet = <span class="hljs-number">32</span>M
+thread_stack = <span class="hljs-number">256</span>K
+thread_cache_size = <span class="hljs-number">64</span>
+query_cache_limit = <span class="hljs-number">8</span>M
+query_cache_size = <span class="hljs-number">64</span>M
+query_cache_type = <span class="hljs-number">1</span>
+
+max_connections = <span class="hljs-number">550</span>
+<span class="hljs-comment">#expire_logs_days = 10</span>
+<span class="hljs-comment">#max_binlog_size = 100M</span>
+
+<span class="hljs-comment">#log_bin should be on a disk with enough free space. Replace '/var/lib/mysql/mysql_binary_log' with an appropriate path for your system</span>
+<span class="hljs-comment">#and chown the specified folder to the mysql user.</span>
+log_bin=/<span class="hljs-keyword">var</span>/lib/mysql/mysql_binary_log
+
+<span class="hljs-comment"># For MySQL version 5.1.8 or later. For older versions, reference MySQL documentation for configuration help.</span>
+binlog_format = mixed
+
+read_buffer_size = <span class="hljs-number">2</span>M
+read_rnd_buffer_size = <span class="hljs-number">16</span>M
+sort_buffer_size = <span class="hljs-number">8</span>M
+join_buffer_size = <span class="hljs-number">8</span>M
+
+<span class="hljs-comment"># InnoDB settings</span>
+innodb_file_per_table = <span class="hljs-number">1</span>
+innodb_flush_log_at_trx_commit  = <span class="hljs-number">2</span>
+innodb_log_buffer_size = <span class="hljs-number">64</span>M
+innodb_buffer_pool_size = <span class="hljs-number">4</span>G
+innodb_thread_concurrency = <span class="hljs-number">8</span>
+innodb_flush_method = O_DIRECT
+innodb_log_file_size = <span class="hljs-number">512</span>M
+
+[mysqld_safe]
+log-error=/<span class="hljs-keyword">var</span>/log/mysqld.log
+pid-file=/<span class="hljs-keyword">var</span>/run/mysqld/mysqld.pid
+
+sql_mode=STRICT_ALL_TABLES
+</code></pre>
+<ol start="2">
+<li>全局搜索Mysql的配置文件my.cnf</li>
+</ol>
+<pre class="hljs undefined"><code>find / -name my.cnf
+</code></pre>
+<p>my.cnf路径一般是/etc/my.cnf没有的话创建，其他地方有的话删除</p>
+<ol start="3">
+<li>修改Mysql的配置文件my.cnf<br>
+把官网给的例子粘贴上去覆盖原来的</li>
+</ol>
+<ul>
+<li>注意<br>
+如果你用vim进行编辑的时候配置可能会自动注释，可以先在Vim的一般模式下输入命令 <code>:set paste</code>
+</li>
+</ul>
+<ol start="4">
+<li>重启Mysql服务</li>
+</ol>
+<pre class="hljs undefined"><code>service mysql restart
+</code></pre>
+<ol start="5">
+<li>测试是否配置成功<br>
+在Mysql中随便创建一个表执行命令<code>show table status</code>发现搜索引擎修改成功<br>
+<div class="image-package">
+<div class="image-container" style="max-width: 379px; max-height: 225px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 59.37%;"></div>
+<div class="image-view" data-width="379" data-height="225"><img data-original-src="//upload-images.jianshu.io/upload_images/6275468-6db8666f4907b689.png" data-original-width="379" data-original-height="225" data-original-format="image/png" data-original-filesize="12108" class="" src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/6275468-6db8666f4907b689.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">第6部分_安装ClouderaManager-09修改Mysql数据库配置文件my.cnf.png</div>
+</div>
+</li>
+</ol>
+<h3>3. 为Cloudera Manager配置Mysql数据库</h3>
+<ol>
+<li>执行脚本scm_prepare_database.sh</li>
+</ol>
+<pre class="hljs undefined"><code>/usr/share/cmf/schema/scm_prepare_database.sh mysql  -uroot -p123123 scm scm scm
+</code></pre>
+<p>如果Mysql与安装的cloudera-scm-server不在同一台服务器，比如说<br>
+Mysql在cm01.spark.com，cloudera-scm-server在cm02.spark.com<br>
+使用命令：</p>
+<pre class="hljs bash"><code class="bash"><span class="hljs-comment"># 只在cm02.spark.com的服务器执行命令</span>
+/usr/share/cmf/schema/scm_prepare_database.sh mysql -h cm01.spark.com -uroot -p123123 --scm-host cm02.spark.com scm scm scm
+</code></pre>
+<p>这个命令的意思是：<br>
+为Cloudera Manager指定数据库类型为mysql<br>
+通过用户名为root，密码为123123，连接cm01.spark.com上的Mysql数据库。<br>
+为在cm02.spark.com的cloudera-scm-server服务，创建一个名叫scm的数据库(第一个scm)，并为这个数据库创建一个用户，用户名为scm(第二个scm)，密码也为scm(第三个scm)</p>
+<ul>
+<li>
+<p>上面都是根据官网说明来做的</p>
+<br>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 217px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 20.34%;"></div>
+<div class="image-view" data-width="1067" data-height="217"><img data-original-src="//upload-images.jianshu.io/upload_images/6275468-a4e2c07eed68377b.png" data-original-width="1067" data-original-height="217" data-original-format="image/png" data-original-filesize="23767" class="" src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/6275468-a4e2c07eed68377b.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">第6部分_安装ClouderaManager_10为CM配置Mysql数据库.png</div>
+</div>
+</li>
+</ul>
+<ol start="2">
+<li>停止CM server服务</li>
+</ol>
+<pre class="hljs undefined"><code>service cloudera-scm-server stop
+service cloudera-scm-server-db stop
+</code></pre>
+<ol start="3">
+<li>删除内嵌的默认数据库PostgreSQL的配置</li>
+</ol>
+<pre class="hljs undefined"><code>rm -f /etc/cloudera-scm-server/db.mgmt.properties
+</code></pre>
+<ol start="4">
+<li>启动ClouderaManager服务</li>
+</ol>
+<pre class="hljs undefined"><code>service cloudera-scm-server start
+</code></pre>
+<ul>
+<li>cloudera-scm-server-db这个服务是ClouderaManager内嵌的数据库，就不用再启动了，就算启动也启动不起来</li>
+<li>scm数据库是执行scm_prepare_database.sh脚本时创建的，一同创建的还有scm的用户</li>
+<li>这个数据库里的表是重启cloudera-scm-server服务时创建的</li>
+</ul>
+<ol start="5">
+<li>浏览器访问地址：<a href="https://link.jianshu.com/?t=http://cm02.spark.com:7180" target="_blank" rel="nofollow">http://cm02.spark.com:7180</a>
+</li>
+</ol>
+<ul>
+<li>
+<strong>cloudera-scm-server重启以后重新配置数据库及创建表需要时间，访问这个地址要等一会</strong><br>
+<div class="image-package">
+<div class="image-container" style="max-width: 657px; max-height: 530px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 80.67%;"></div>
+<div class="image-view" data-width="657" data-height="530"><img data-original-src="//upload-images.jianshu.io/upload_images/6275468-be641ff485a13dc4.png" data-original-width="657" data-original-height="530" data-original-format="image/png" data-original-filesize="52702" class="" src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/6275468-be641ff485a13dc4.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">第6部分_安装ClouderaManager_11为CM配置的Mysql数据库.png</div>
+</div>
+<br>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 676px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 93.89%;"></div>
+<div class="image-view" data-width="720" data-height="676"><img data-original-src="//upload-images.jianshu.io/upload_images/6275468-7d2c897a5d749d08.png" data-original-width="720" data-original-height="676" data-original-format="image/png" data-original-filesize="51825" class="" src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/6275468-7d2c897a5d749d08.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">大数据环境准备0118-CM浏览器登陆界面.png</div>
+</div>
+</li>
+</ul>
+<h2>七、Cloudera Manager添加大数据服务组件</h2>
+<p>登陆以后next, next, next</p>
+<ul>
+<li>
+<p>到添加主机页面，输入<code>cm[01-03].spark.com</code><br>
+</p>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 658px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 82.25%;"></div>
+<div class="image-view" data-width="800" data-height="658"><img data-original-src="//upload-images.jianshu.io/upload_images/6275468-0c8fd8a52704532f.png" data-original-width="800" data-original-height="658" data-original-format="image/png" data-original-filesize="65866" class="" src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/6275468-0c8fd8a52704532f.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">第7部分_ClouderaManager添加服务_05CM浏览器访问-添加主机.png</div>
+</div>
+<br>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 624px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 89.27000000000001%;"></div>
+<div class="image-view" data-width="792" data-height="707"><img data-original-src="//upload-images.jianshu.io/upload_images/6275468-24a7877f85553e45.png" data-original-width="792" data-original-height="707" data-original-format="image/png" data-original-filesize="89237" class="" src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/6275468-24a7877f85553e45.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">第7部分_ClouderaManager添加服务_05CM浏览器访问-添加主机点击搜索后的页面.png</div>
+</div>
+<br>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 702px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 100.39%;"></div>
+<div class="image-view" data-width="769" data-height="772"><img data-original-src="//upload-images.jianshu.io/upload_images/6275468-9b88e1540015265a.png" data-original-width="769" data-original-height="772" data-original-format="image/png" data-original-filesize="88047" class="" src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/6275468-9b88e1540015265a.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">第7部分_ClouderaManager添加服务_06CM浏览器访问-选择parcel存储库.png</div>
+</div>
+<p></p>
+</li>
+<li>
+<p>修改远程Parcel存储库地址为  <a href="https://link.jianshu.com/?t=http://cm02.spark.com/cdh" target="_blank" rel="nofollow">http://cm02.spark.com/cdh</a><br>
+</p>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 613px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 60.39%;"></div>
+<div class="image-view" data-width="1015" data-height="613"><img data-original-src="//upload-images.jianshu.io/upload_images/6275468-15ecd94f5e0d70c8.png" data-original-width="1015" data-original-height="613" data-original-format="image/png" data-original-filesize="60660" class="" src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/6275468-15ecd94f5e0d70c8.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">第7部分_ClouderaManager添加服务_07CM浏览器访问-修改远程Parcel存储库地址.png</div>
+</div>
+<p></p>
+</li>
+<li>
+<p>指定Cloudera Manager版本及存储地址为<a href="https://link.jianshu.com/?t=http://cm02.spark.com/cm/5.9.3" target="_blank" rel="nofollow">http://cm02.spark.com/cm/5.9.3</a><br>
+</p>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 693px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 99.08%;"></div>
+<div class="image-view" data-width="762" data-height="755"><img data-original-src="//upload-images.jianshu.io/upload_images/6275468-727d70a73ee910bc.png" data-original-width="762" data-original-height="755" data-original-format="image/png" data-original-filesize="92292" class="" src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/6275468-727d70a73ee910bc.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">第7部分_ClouderaManager添加服务_08CM浏览器访问-指定CM版本及存储地址.png</div>
+</div>
+<p></p>
+</li>
+<li>
+<p>虽然已安装的JDK1.8，这里还是要选择安装Cloudera Manager自带的JDK，否则后面进行主机正确性检查的时候会的警告</p>
+<br>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 528px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 75.53%;"></div>
+<div class="image-view" data-width="1075" data-height="812"><img data-original-src="//upload-images.jianshu.io/upload_images/6275468-0f916e4c061fef47.png" data-original-width="1075" data-original-height="812" data-original-format="image/png" data-original-filesize="132047" class="" src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/6275468-0f916e4c061fef47.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">第7部分_ClouderaManager添加服务_09CM浏览器访问-JDK安装选项.png</div>
+</div>
+</li>
+<li>
+<p>不启用单用户模式</p>
+<br>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 694px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 99.22999999999999%;"></div>
+<div class="image-view" data-width="781" data-height="775"><img data-original-src="//upload-images.jianshu.io/upload_images/6275468-3f1aa7ec2031444b.png" data-original-width="781" data-original-height="775" data-original-format="image/png" data-original-filesize="84726" class="" src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/6275468-3f1aa7ec2031444b.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">第7部分_ClouderaManager添加服务_10CM浏览器访问-不启用单用户模式.png</div>
+</div>
+</li>
+</ul>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 700px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 100.0%;"></div>
+<div class="image-view" data-width="777" data-height="777"><img data-original-src="//upload-images.jianshu.io/upload_images/6275468-3b44baeec5be2b76.png" data-original-width="777" data-original-height="777" data-original-format="image/png" data-original-filesize="82847" class="" src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/6275468-3b44baeec5be2b76.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">第7部分_ClouderaManager添加服务_11CM浏览器访问-提供SSH登陆凭据.png</div>
+</div>
+<ul>
+<li>
+<p>Cloudera Manager Agent服务开始安装，这里时间要久一些</p>
+<br>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 678px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 96.99%;"></div>
+<div class="image-view" data-width="798" data-height="774"><img data-original-src="//upload-images.jianshu.io/upload_images/6275468-41cdb1d14df44e9e.png" data-original-width="798" data-original-height="774" data-original-format="image/png" data-original-filesize="67788" class="" src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/6275468-41cdb1d14df44e9e.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">第7部分_ClouderaManager添加服务_12CM浏览器访问-CM安装.png</div>
+</div>
+</li>
+<li>
+<p>Cloudera Manager Agent服务安装成功</p>
+<br>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 673px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 96.24000000000001%;"></div>
+<div class="image-view" data-width="798" data-height="768"><img data-original-src="//upload-images.jianshu.io/upload_images/6275468-e9c1003daf836498.png" data-original-width="798" data-original-height="768" data-original-format="image/png" data-original-filesize="62789" class="" src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/6275468-e9c1003daf836498.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">第7部分_ClouderaManager添加服务_13CM浏览器访问-CM安装成功.png</div>
+</div>
+</li>
+<li>
+<p>Parcel安装包从远程Parcel存储库下载到三台服务器，默认位置为<code>/opt/cloudera</code>，这一步时间也比较长<br>
+</p>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 681px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 97.37%;"></div>
+<div class="image-view" data-width="797" data-height="776"><img data-original-src="//upload-images.jianshu.io/upload_images/6275468-ff88d5edd77acb6d.png" data-original-width="797" data-original-height="776" data-original-format="image/png" data-original-filesize="55774" class="" src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/6275468-ff88d5edd77acb6d.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">第7部分_ClouderaManager添加服务_14CM浏览器访问-CM安装分发选定Parcel.png</div>
+</div>
+<p></p>
+</li>
+<li>
+<p>主机正确性检查（前面的准备工作哪一步做得不对，这里会集中体现出来）</p>
+<br>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 639px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 91.36%;"></div>
+<div class="image-view" data-width="1018" data-height="930"><img data-original-src="//upload-images.jianshu.io/upload_images/6275468-1f23da069f836b76.png" data-original-width="1018" data-original-height="930" data-original-format="image/png" data-original-filesize="96212" class="" src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/6275468-1f23da069f836b76.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">第7部分_ClouderaManager添加服务_15CM浏览器访问-CM安装主机正确性检查.png</div>
+</div>
+</li>
+<li>
+<p>添加大数据服务组件（根据具体情况选择）</p>
+<br>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 631px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 90.28%;"></div>
+<div class="image-view" data-width="1029" data-height="929"><img data-original-src="//upload-images.jianshu.io/upload_images/6275468-176ece3cf98fd47b.png" data-original-width="1029" data-original-height="929" data-original-format="image/png" data-original-filesize="128707" class="" src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/6275468-176ece3cf98fd47b.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">第7部分_ClouderaManager添加服务_16CM浏览器访问-添加大数据服务.png</div>
+</div>
+</li>
+<li>
+<p>给不同的服务器分配角色</p>
+<br>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 600px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 85.83%;"></div>
+<div class="image-view" data-width="1080" data-height="927"><img data-original-src="//upload-images.jianshu.io/upload_images/6275468-1f704c48caf557ad.png" data-original-width="1080" data-original-height="927" data-original-format="image/png" data-original-filesize="110049" class="" src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/6275468-1f704c48caf557ad.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">第7部分_ClouderaManager添加服务_17CM浏览器访问-角色分配.png</div>
+</div>
+</li>
+<li><p>给大数据的一些服务组件配置数据库（Hive、Hue、Oozie、以及ClouderaManager的监控服务）<br>
+这里就用到前面在Mysql创建的数据库</p></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>大数据服务名称</th>
+<th>数据库</th>
+<th>用户名</th>
+<th>密码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Activity Monitor</td>
+<td>amon</td>
+<td>amon</td>
+<td>amon</td>
+</tr>
+<tr>
+<td>Reports Manager</td>
+<td>rman</td>
+<td>rman</td>
+<td>rman</td>
+</tr>
+<tr>
+<td>Hive Metastore Server</td>
+<td>hive</td>
+<td>hive</td>
+<td>hive</td>
+</tr>
+<tr>
+<td>Sentry Server</td>
+<td>sentry</td>
+<td>sentry</td>
+<td>sentry</td>
+</tr>
+<tr>
+<td>Cloudera Navigator Audit Server</td>
+<td>nav</td>
+<td>nav</td>
+<td>nav</td>
+</tr>
+<tr>
+<td>Cloudera Navigator Metadata Server</td>
+<td>navms</td>
+<td>navms</td>
+<td>navms</td>
+</tr>
+<tr>
+<td>Oozie</td>
+<td>oozie</td>
+<td>oozie</td>
+<td>oozie</td>
+</tr>
+<tr>
+<td>hue</td>
+<td>hue</td>
+<td>hue</td>
+<td>hue</td>
+</tr>
+</tbody>
+</table>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 598px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 85.56%;"></div>
+<div class="image-view" data-width="1018" data-height="871"><img data-original-src="//upload-images.jianshu.io/upload_images/6275468-5829baf9027e6a65.png" data-original-width="1018" data-original-height="871" data-original-format="image/png" data-original-filesize="102290" class="" src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/6275468-5829baf9027e6a65.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">第7部分_ClouderaManager添加服务_18CM浏览器访问-数据库设置.png</div>
+</div>
+<ul>
+<li>
+<p>审核更改，这里使用默认的就可以</p>
+<br>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 677px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 63.74999999999999%;"></div>
+<div class="image-view" data-width="1062" data-height="677"><img data-original-src="//upload-images.jianshu.io/upload_images/6275468-c0e40794617cb52d.png" data-original-width="1062" data-original-height="677" data-original-format="image/png" data-original-filesize="75455" class="" src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/6275468-c0e40794617cb52d.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">第7部分_ClouderaManager添加服务_19CM浏览器访问-审核更改.png</div>
+</div>
+</li>
+</ul>
+<h2>部署完成</h2>
+<p>之所以把这一步单独列出来，是因为从上张截图到这一步还有很多工作要做，中间你会遇到各种问题，各种报错，都需要你自己根据自己的情况去进行配置，这次我搭了5遍，每次出现的问题都不一样，如果你的内存不足的话问题会更多。<br>
+添加服务组件产生的报错，不同的集群，不同的内存及资源分配发生的问题也不一样，不同讨论，实在解决不了的话可以贴出来，大家一块交流交流。</p>
+<ul>
+<li>最后的最后<br>
+<strong>从开始搭建到最终完成用了一个月，如果你觉得这篇文章对你有帮助别忘了点赞啊</strong><br>
+<div class="image-package">
+<div class="image-container" style="max-width: 700px; max-height: 662px; background-color: transparent;">
+<div class="image-container-fill" style="padding-bottom: 56.44%;"></div>
+<div class="image-view" data-width="1173" data-height="662"><img data-original-src="//upload-images.jianshu.io/upload_images/6275468-f500dafe1d56804f.png" data-original-width="1173" data-original-height="662" data-original-format="image/png" data-original-filesize="125094" class="" src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/6275468-f500dafe1d56804f.png" style="cursor: zoom-in;"></div>
+</div>
+<div class="image-caption">第7部分_ClouderaManager添加服务_20CM浏览器访问-部署完成.png</div>
+</div>
+</li>
+</ul>
+
+          </div>
+        </div>
+    </div>
+
+    <!-- 如果是付费文章，未购买，则显示购买按钮 -->
+
+    <!-- 连载目录项 -->
+
+    <!-- 如果是付费文章 -->
+      <!-- 如果是付费连载，已购买，且作者允许赞赏，则显示付费信息和赞赏 -->
+        <div id="free-reward-panel" class="support-author"><p>小礼物走一走，来简书关注我</p> <div class="btn btn-pay">赞赏支持</div> <div class="supporter"><ul class="support-list"></ul> <!----></div> <!----> <!----></div>
+
+      <div class="show-foot">
+        <a class="notebook" href="https://www.jianshu.com/nb/17599226">
+          <i class="iconfont ic-search-notebook"></i>
+          <span>technology</span>
+</a>        <div class="copyright" data-toggle="tooltip" data-html="true" data-original-title="转载请联系作者获得授权，并标注“简书作者”。">
+          © 著作权归作者所有
+        </div>
+        <div class="modal-wrap" data-report-note="">
+          <a id="report-modal">举报文章</a>
+        </div>
+      </div>
+
+      <!-- 文章底部作者信息 -->
+        <div class="follow-detail">
+          <div class="info">
+            <a class="avatar" href="https://www.jianshu.com/u/5bf2763194fd">
+              <img src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/15-a7ac401939dd4df837e3bbf82abaa2a8.jpg" alt="96">
+</a>            <a class="btn btn-success follow"><i class="iconfont ic-follow"></i><span>关注</span></a>
+            <a class="title" href="https://www.jianshu.com/u/5bf2763194fd">荒野雄兵</a>
+              <i class="iconfont ic-man"></i>
+          <p>写了 45739 字，被 9 人关注，获得了 25 个喜欢</p></div>
+            <div class="signature">一个喜欢运动,喜欢户外,喜欢看书，喜欢折腾的攻城狮
+简书看的人太少，就把技术博客放在CSDN了，其他的还是在简书，欢迎光临我的技术博客
+https://blog.csdn.net/daerzei</div>
+        </div>
+
+    <div class="meta-bottom">
+      <div data-v-6ddd02c6="" class="like"><div data-v-6ddd02c6="" class="btn like-group"><div data-v-6ddd02c6="" class="btn-like"><a data-v-6ddd02c6="">喜欢</a></div> <div data-v-6ddd02c6="" class="modal-wrap"><a data-v-6ddd02c6="">3</a></div></div> <!----></div>
+      <div class="share-group">
+        <a class="share-circle" data-action="weixin-share" data-toggle="tooltip" data-original-title="分享到微信">
+          <i class="iconfont ic-wechat"></i>
+        </a>
+        <a class="share-circle" data-action="weibo-share" data-toggle="tooltip" href="javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f=&#39;http://v.t.sina.com.cn/share/share.php?appkey=1881139527&#39;,u=z||d.location,p=[&#39;&amp;url=&#39;,e(u),&#39;&amp;title=&#39;,e(t||d.title),&#39;&amp;source=&#39;,e(r),&#39;&amp;sourceUrl=&#39;,e(l),&#39;&amp;content=&#39;,c||&#39;gb2312&#39;,&#39;&amp;pic=&#39;,e(p||&#39;&#39;)].join(&#39;&#39;);function%20a(){if(!window.open([f,p].join(&#39;&#39;),&#39;mb&#39;,[&#39;toolbar=0,status=0,resizable=1,width=440,height=430,left=&#39;,(s.width-440)/2,&#39;,top=&#39;,(s.height-430)/2].join(&#39;&#39;)))u.href=[f,p].join(&#39;&#39;);};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,&#39;&#39;,&#39;&#39;,&#39;&#39;, &#39;推荐 荒野雄兵 的文章《史上最全CentOS6离线安装部署Cloudera Manager5.9.3》（ 分享自 @简书 ）&#39;,&#39;https://www.jianshu.com/p/b21d54a9bdec?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=weibo&#39;,&#39;页面编码gb2312|utf-8默认gb2312&#39;));" data-original-title="分享到微博">
+          <i class="iconfont ic-weibo"></i>
+        </a>
+        <a class="share-circle" data-toggle="tooltip" id="longshare" target="_blank" data-original-title="" title="">
+            <div class="qrcode" id="qrcode">
+             <img src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/download-index-side-qrcode-cb13fc9106a478795f8d10f9f632fccf.png" alt="Download index side qrcode">
+             <p>下载app生成长微博图片</p>
+             </div>
+          <i class="iconfont ic-picture"></i>
+        </a>
+        <a class="share-circle more-share" tabindex="0" data-toggle="popover" data-placement="top" data-html="true" data-trigger="focus" href="javascript:void(0);" data-content="
+          &lt;ul class=&quot;share-list&quot;&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=&#39;+e(&#39;https://www.jianshu.com/p/b21d54a9bdec?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=qzone&#39;)+&#39;&amp;title=&#39;+e(&#39;推荐 荒野雄兵 的文章《史上最全CentOS6离线安装部署Cloudera Manager5.9.3》&#39;),x=function(){if(!window.open(r,&#39;qzone&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-zone&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到QQ空间&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://twitter.com/share?url=&#39;+e(&#39;https://www.jianshu.com/p/b21d54a9bdec?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=twitter&#39;)+&#39;&amp;text=&#39;+e(&#39;推荐 荒野雄兵 的文章《史上最全CentOS6离线安装部署Cloudera Manager5.9.3》（ 分享自 @jianshucom ）&#39;)+&#39;&amp;related=&#39;+e(&#39;jianshucom&#39;),x=function(){if(!window.open(r,&#39;twitter&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-twitter&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到Twitter&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://www.facebook.com/dialog/share?app_id=483126645039390&amp;display=popup&amp;href=https://www.jianshu.com/p/b21d54a9bdec?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=facebook&#39;,x=function(){if(!window.open(r,&#39;facebook&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-facebook&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到Facebook&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://plus.google.com/share?url=&#39;+e(&#39;https://www.jianshu.com/p/b21d54a9bdec?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=google_plus&#39;),x=function(){if(!window.open(r,&#39;google_plus&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-google&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到Google+&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,s1=window.getSelection,s2=d.getSelection,s3=d.selection,s=s1?s1():s2?s2():s3?s3.createRange().text:&#39;&#39;,r=&#39;http://www.douban.com/recommend/?url=&#39;+e(&#39;https://www.jianshu.com/p/b21d54a9bdec?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=douban&#39;)+&#39;&amp;title=&#39;+e(&#39;史上最全CentOS6离线安装部署Cloudera Manager5.9.3&#39;)+&#39;&amp;sel=&#39;+e(s)+&#39;&amp;v=1&#39;,x=function(){if(!window.open(r,&#39;douban&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r+&#39;&amp;r=1&#39;};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})()&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-douban&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到豆瓣&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+          &lt;/ul&gt;
+        " data-original-title="" title="">更多分享</a>
+      </div>
+    </div>
+      <a id="web-note-ad-1" target="_blank" href="https://www.jianshu.com/apps/redirect?utm_source=note-bottom-click"><img src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/web-note-ad-1-c2e1746859dbf03abe49248893c9bea4.png" alt="Web note ad 1"></a>
+    <!--
+    <div id="note-comment-above-ad-container">
+      <span id="youdao-comment-ad" class="ad-badge">广告</span>
+    </div>
+    -->
+    <div><div id="comment-list" class="comment-list"><div><form class="new-comment"><a class="avatar"><img src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/avatar_default-78d4d1f68984cd6d4379508dd94b4210.png"></a> <div class="sign-container"><a href="https://www.jianshu.com/sign_in?utm_source=desktop&amp;utm_medium=not-signed-in-comment-form" class="btn btn-sign">登录</a> <span>后发表评论</span></div></form> <!----></div> <!----> <div class="comments-placeholder" style="display: none;"><div class="author"><div class="avatar"></div> <div class="info"><div class="name"></div> <div class="meta"></div></div></div> <div class="text"></div> <div class="text animation-delay"></div> <div class="tool-group"><i class="iconfont ic-zan-active"></i><div class="zan"></div> <i class="iconfont ic-list-comments"></i><div class="zan"></div></div></div> <div id="normal-comment-list" class="normal-comment-list"><div><div><div class="top-title"><span>14条评论</span> <a class="author-only">只看作者</a> <a class="close-btn" style="display: none;">关闭评论</a> <div class="pull-right"><a class="active">按时间倒序</a><a class="">按时间正序</a></div></div></div> <!----> <!----> <div class="comments-placeholder" style="display: none;"><div class="author"><div class="avatar"></div> <div class="info"><div class="name"></div> <div class="meta"></div></div></div> <div class="text"></div> <div class="text animation-delay"></div> <div class="tool-group"><i class="iconfont ic-zan-active"></i><div class="zan"></div> <i class="iconfont ic-list-comments"></i><div class="zan"></div></div></div> <div id="comment-27693216" class="comment"><div><div class="author"><div data-v-f3bf5228="" class="v-tooltip-container" style="z-index: 0;"><div class="v-tooltip-content"><a href="https://www.jianshu.com/u/159862fa1b7f" target="_blank" class="avatar"><img src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/d7f6f63c-1255-43cc-9831-d9ad5e388ec9"></a>  </div> <!----></div> <div class="info"><a href="https://www.jianshu.com/u/159862fa1b7f" target="_blank" class="name">林夕_337f</a> <!----> <!----> <div class="meta"><span>3楼 · 2018.08.20 14:09</span></div></div></div> <div class="comment-wrap"><p>你好，在安装Cloudera Manager Agent服务时，三台机子只有两台安装成功了，第二台安装失败，第二台机子安装有mysql。已经卸载mysql-libs的，安装日志报：<br>Transaction Check Error: <br>file /usr/share/mysql/charsets/Index.xml from install of mysql-libs-5.1.73-8.el6_8.x86_64 conflicts with file from package MySQL-server-5.6.39-1.el6.i686 <br>file /usr/share/mysql/charsets/armscii8.xml from install of mysql-libs-5.1.73-8.el6_8.x86_64 conflicts with file from package MySQL-server-5.6.39-1.el6.i686 <br>file /usr/share/mysql/charsets/ascii.xml from install of mysql-libs-5.1.73-8.el6_8.x86_64 conflicts with file from package MySQL-server-5.6.39-1.el6.i686 <br>file /usr/share/mysql/charsets/cp1250.xml from install of mysql-libs-5.1.73-8.el6_8.x86_64 conflicts with file from package MySQL-server-5.6.39-1.el6.i686 <br>file /usr/share/mysql/charsets/cp1256.xml from install of mysql-libs-5.1.73-8.el6_8.x86_64 conflicts with file from package MySQL-server-5.6.39-1.el6.i686 <br>file /usr/share/mysql/charsets/cp1257.xml from install of mysql-libs-5.1.73-8.el6_8.x86_64 conflicts with file from package MySQL-server-5.6.39-1.el6.i686 <br>file /usr/share/mysql/charsets/cp850.xml from install of mysql-libs-5.1.73-8.el6_8.x86_64 conflicts with file from package MySQL-server-5.6.39-1.el6.i686 <br>file /usr/share/mysql/charsets/cp852.xml from install of mysql-libs-5.1.73-8.el6_8.x86_64 conflicts with file from package MySQL-server-5.6.39-1.el6.i686 <br>file /usr/share/mysql/charsets/cp866.xml from install of mysql-libs-5.1.73-8.el6_8.x86_64 conflicts with file from package MySQL-server-5.6.39-1.el6.i686 <br>所有的步骤都是安装你给的步骤完成的。请问问题出在哪里呢？是因为Cloudera Manager Agent服务需要依赖的是mysql-lib5.1？该如何解决呢</p> <div class="tool-group"><a data-v-cdecbe24="" id="like-button-27693216" class="like-button"><span data-v-cdecbe24="">赞</span></a> <a class=""><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div></div> <div class="sub-comment-list"><div id="comment-27693652" class="sub-comment"><p><div data-v-f3bf5228="" class="v-tooltip-container" style="z-index: 0;"><div class="v-tooltip-content"><a href="https://www.jianshu.com/u/5bf2763194fd" target="_blank">荒野雄兵</a>：
+            </div> <!----></div> <span><a href="https://www.jianshu.com/u/159862fa1b7f" class="maleskine-author" target="_blank" data-user-slug="159862fa1b7f">@林夕_337f</a> 你装的Mysql是32位的吗？</span></p> <div class="sub-tool-group"><span>2018.08.20 14:25</span> <a class=""><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div><div id="comment-27693814" class="sub-comment"><p><div data-v-f3bf5228="" class="v-tooltip-container" style="z-index: 0;"><div class="v-tooltip-content"><a href="https://www.jianshu.com/u/5bf2763194fd" target="_blank">荒野雄兵</a>：
+            </div> <!----></div> <span>错误提示显示mysql-libs是64位的，与你安装的32位的Mysql冲突了</span></p> <div class="sub-tool-group"><span>2018.08.20 14:30</span> <a class=""><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div><div id="comment-27726975" class="sub-comment"><p><div data-v-f3bf5228="" class="v-tooltip-container" style="z-index: 0;"><div class="v-tooltip-content"><a href="https://www.jianshu.com/u/159862fa1b7f" target="_blank">林夕_337f</a>：
+            </div> <!----></div> <span><a href="https://www.jianshu.com/u/5bf2763194fd" class="maleskine-author" target="_blank" data-user-slug="5bf2763194fd">@荒野独行aaa</a> 谢谢楼主，mysql版本安装错了，安装到32位的去了，怪不得之前在安装mysql的时候一些rpm包不兼容，我还额外的去下了32位的其他rpm包╭(╯^╰)╮，重新安装了64位的就可以了。对了，我是用虚拟机安装的，开了三台内存是2G的机子，在根据官网配置my.cnf的时候mysql重启失败，原因是my.cnf里有个配置是4G，超过了虚拟机内存限制，所以报错了，改成1G就可以了</span></p> <div class="sub-tool-group"><span>2018.08.21 11:15</span> <a class=""><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div> <div class="sub-comment more-comment"><a class="add-comment-btn"><i class="iconfont ic-subcomment"></i> <span>添加新评论</span></a> <span class="line-warp">
+          还有9条评论，
+          <a>展开查看</a></span> <!----> <!----></div> <!----></div></div><div id="comment-26409752" class="comment"><div><div class="author"><div data-v-f3bf5228="" class="v-tooltip-container" style="z-index: 0;"><div class="v-tooltip-content"><a href="https://www.jianshu.com/u/9e689483a88f" target="_blank" class="avatar"><img src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/4-3397163ecdb3855a0a4139c34a695885.jpg"></a>  </div> <!----></div> <div class="info"><a href="https://www.jianshu.com/u/9e689483a88f" target="_blank" class="name">疯狂搬砖头</a> <!----> <!----> <div class="meta"><span>2楼 · 2018.07.18 11:08</span></div></div></div> <div class="comment-wrap"><p>过程很详细，终于入坑</p> <div class="tool-group"><a data-v-cdecbe24="" id="like-button-26409752" class="like-button"><span data-v-cdecbe24="">赞</span></a> <a class=""><i class="iconfont ic-comment"></i> <span>回复</span></a> <!----> <!----></div></div></div> <div class="sub-comment-list hide"><!----> <!----></div></div></div></div> <!----> <div><!----></div></div></div>
+  </div>
+
+  <div class="side-tool"><ul><li data-placement="left" data-toggle="tooltip" data-container="body" data-original-title="回到顶部"><a class="function-button"><i class="iconfont ic-backtop"></i></a></li> <!----> <!----> <!----> <!----> <li data-placement="left" data-toggle="tooltip" data-container="body" data-original-title="分享文章" id="share"><a tabindex="0" role="button" data-toggle="popover" data-placement="left" data-html="true" data-trigger="focus" href="javascript:void(0);" data-content="&lt;ul class=&#39;share-list&#39; style=&quot;width:220px&quot;&gt;
+                  &lt;li&gt;&lt;a class=&quot;weixin-share&quot;&gt;&lt;i class=&quot;social-icon-sprite social-icon-weixin&quot;&gt;&lt;/i&gt;&lt;span&gt;分享到微信&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                  &lt;li&gt;&lt;a href=&quot;javascript:void((function(s,d,e,r,l,p,t,z,c){var%20f=&#39;http://v.t.sina.com.cn/share/share.php?appkey=1881139527&#39;,u=z||d.location,p=[&#39;&amp;url=&#39;,e(u),&#39;&amp;title=&#39;,e(t||d.title),&#39;&amp;source=&#39;,e(r),&#39;&amp;sourceUrl=&#39;,e(l),&#39;&amp;content=&#39;,c||&#39;gb2312&#39;,&#39;&amp;pic=&#39;,e(p||&#39;&#39;)].join(&#39;&#39;);function%20a(){if(!window.open([f,p].join(&#39;&#39;),&#39;mb&#39;,[&#39;toolbar=0,status=0,resizable=1,width=440,height=430,left=&#39;,(s.width-440)/2,&#39;,top=&#39;,(s.height-430)/2].join(&#39;&#39;)))u.href=[f,p].join(&#39;&#39;);};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();})(screen,document,encodeURIComponent,&#39;&#39;,&#39;&#39;,&#39;&#39;, &#39;推荐 荒野雄兵 的文章《史上最全CentOS6离线安装部署Cloudera Manager5.9.3》（ 分享自 @简书 ）&#39;,&#39;https://www.jianshu.com/p/b21d54a9bdec?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=weibo&#39;,&#39;页面编码gb2312|utf-8默认gb2312&#39;));&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-weibo&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到微博&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                  
+                  &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=&#39;+e(&#39;https://www.jianshu.com/p/b21d54a9bdec?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=qzone&#39;)+&#39;&amp;title=&#39;+e(&#39;推荐 荒野雄兵 的文章《史上最全CentOS6离线安装部署Cloudera Manager5.9.3》&#39;),x=function(){if(!window.open(r,&#39;qzone&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-zone&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到QQ空间&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                  &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://twitter.com/share?url=&#39;+e(&#39;https://www.jianshu.com/p/b21d54a9bdec?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=twitter&#39;)+&#39;&amp;text=&#39;+e(&#39;推荐 荒野雄兵 的文章《史上最全CentOS6离线安装部署Cloudera Manager5.9.3》（ 分享自 @jianshucom ）&#39;)+&#39;&amp;related=&#39;+e(&#39;jianshucom&#39;),x=function(){if(!window.open(r,&#39;twitter&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=600,height=600&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-twitter&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到Twitter&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                  &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://www.facebook.com/dialog/share?app_id=483126645039390&amp;display=popup&amp;href=https://www.jianshu.com/p/b21d54a9bdec?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=facebook&#39;,x=function(){if(!window.open(r,&#39;facebook&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-facebook&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到Facebook&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                  &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,r=&#39;https://plus.google.com/share?url=&#39;+e(&#39;https://www.jianshu.com/p/b21d54a9bdec?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=google_plus&#39;),x=function(){if(!window.open(r,&#39;google_plus&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})();&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-google&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到Google+&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                  &lt;li&gt;&lt;a href=&quot;javascript:void(function(){var d=document,e=encodeURIComponent,s1=window.getSelection,s2=d.getSelection,s3=d.selection,s=s1?s1():s2?s2():s3?s3.createRange().text:&#39;&#39;,r=&#39;http://www.douban.com/recommend/?url=&#39;+e(&#39;https://www.jianshu.com/p/b21d54a9bdec?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=reader_share&amp;utm_source=douban&#39;)+&#39;&amp;title=&#39;+e(&#39;史上最全CentOS6离线安装部署Cloudera Manager5.9.3&#39;)+&#39;&amp;sel=&#39;+e(s)+&#39;&amp;v=1&#39;,x=function(){if(!window.open(r,&#39;douban&#39;,&#39;toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330&#39;))location.href=r+&#39;&amp;r=1&#39;};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()}})()&quot;&gt;&lt;i class=&#39;social-icon-sprite social-icon-douban&#39;&gt;&lt;/i&gt;&lt;span&gt;分享到豆瓣&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;" data-original-title="" title="" class="function-button"><i class="iconfont ic-share"></i></a> <!----></li> <!----></ul></div>
+</div>
+<div class="note-bottom">
+  <div><div class="main"><div class="title">被以下专题收入，发现更多相似内容</div> <!----> <div class="include-collection"><!----> <a href="https://www.jianshu.com/c/cc9ef528a916?utm_source=desktop&amp;utm_medium=notes-included-collection" target="_blank" class="item"><img src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/2018-03-11_(2).png"><div class="name">大数据相关</div></a> <!----></div></div> <!----> <!----></div>
+  <div><div class="recommend-note"><div class="meta"><div class="title">
+        推荐阅读
+        <a target="_blank" href="https://www.jianshu.com/" class="more">
+           更多精彩内容<i class="iconfont ic-link"></i></a></div></div> <div class="list"><div class="note have-img"><a target="_blank" href="https://www.jianshu.com/p/cec7779ec015?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" class="cover" style="background-image: url(&quot;//upload-images.jianshu.io/upload_images/13793929-cc9343a5e67a091a.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/300/h/240/format/webp&quot;);"></a> <a target="_blank" href="https://www.jianshu.com/p/cec7779ec015?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" class="title">生命有长，思念无疆……</a> <p class="description">昨天早上我刚到单位，科里新来的小兄弟就跟我说：“哥，你知道不， 李咏去世了！” 我随口“嗯”了一句。 可能是天气转凉了，这几天总有同事家的老人去世，为此我还随了不少份子。恰好正逢机构改革，单位新转来不少同事，很多都还叫不上名字，所以当听到他说谁谁谁又去世的时候，我心想着一定又是哪个新同事家里的老人走了。 我说：“咱们什么时候去悼念啊？” 小兄弟满脸无奈：“哥，你能不能长点心啊，我说的是李咏，《非常 6+1》的李咏，在美国去世的，你准备去哪悼念啊？” 听他说完我先是震惊，“啊？！”了一声之后似乎仍然不敢相信，满脸狐疑地又问了一遍：“你说谁？！” 他很肯定的一字一字地说：“春晚主持人――李咏...</p> <a target="_blank" href="https://www.jianshu.com/u/8aa49b2c590e?utm_campaign=maleskine&amp;utm_content=user&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" class="author"><div class="avatar" style="background-image: url(&quot;//upload.jianshu.io/users/upload_avatars/13793929/f436baa2-f66e-4cf6-aa83-c0b9bd96d336.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/24/h/24/format/webp&quot;);"></div> <span class="name">宜书舟</span></a></div><div class="note have-img"><a target="_blank" href="https://www.jianshu.com/p/ae4278841a5c?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" class="cover" style="background-image: url(&quot;//upload-images.jianshu.io/upload_images/12277775-ee09ed2d9922c5f0.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/300/h/240/format/webp&quot;);"></a> <a target="_blank" href="https://www.jianshu.com/p/ae4278841a5c?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" class="title">你的名字原来是一道神秘咒语</a> <p class="description">0 大家有没有过这样的感觉？当听到或者想起某个人的名字的时候，你的嘴角会微微上翘，心情也自然变得柔软、美好起来，这个名字可能是你的妻儿、初恋情人、偶像；而有的时候，你听到一个非常讨厌的人的名字，你可能会忍不住的翻白眼，内心里想要回避。 名字是主观的，是有情感，是有温度的，是带有文化属性的，它是一种文化资产。 对于我们人类来说，我们甚至可以说名字就是一种神秘咒语，有时能发挥神奇的作用。 梁宁有一个观点，名字就是召唤，在早期的社会交往中，原始社会一个部落人不多，人能相互认识而到晚上相互看不见了，只能通过呼唤名字才能召唤一个人。我们也经常能看到一些电视和动画，要召唤什么人，一般都是念他的名字，...</p> <a target="_blank" href="https://www.jianshu.com/u/96f290dcdc39?utm_campaign=maleskine&amp;utm_content=user&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" class="author"><div class="avatar" style="background-image: url(&quot;//upload.jianshu.io/users/upload_avatars/12277775/2f7725d0-38d3-44f3-b5ad-269e0bbe8a61.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/24/h/24/format/webp&quot;);"></div> <span class="name">牛盾区块链</span></a></div><div class="note have-img"><a target="_blank" href="https://www.jianshu.com/p/fff8cd8da099?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" class="cover" style="background-image: url(&quot;//upload-images.jianshu.io/upload_images/1216164-50b0c2cafb58b982.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/300/h/240/format/webp&quot;);"></a> <a target="_blank" href="https://www.jianshu.com/p/fff8cd8da099?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" class="title">分手炮，该不该打？男生是这样说的……</a> <p class="description">今年的双十一，茧里付完尾款就在后台回复小伙伴们的留言了。 在清一色讨论双十一的留言里，有一条读者私信引起了我的注意： 和男友分手了，他问我要不要打个分手炮，你说我该不该同意，他是不是还爱我？ 其实点开这条私信后，我花了一分钟的时间消化并剖析了姑娘的问题。 姑娘的问题有两个：该不该打分手炮？他是不是还爱着我？ 话说这姑娘的潜台词不难读懂：你看，他还想跟我上床，他可能还爱着我。 姑娘应该是还爱着这位前任的，潜意识里愿意接受男友分手炮的建议。 她隐隐觉得打一炮或许能够挽回什么，不过她需要一个外人的肯定，最好这个外人对待感情问题有些见解。 于是乎，一直写情感文的我成为了她的咨询对象。 说实话，大...</p> <a target="_blank" href="https://www.jianshu.com/u/90fa365750f8?utm_campaign=maleskine&amp;utm_content=user&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" class="author"><div class="avatar" style="background-image: url(&quot;//upload.jianshu.io/users/upload_avatars/1216164/aa4ac081-ec00-4d2d-a468-66678821958d.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/24/h/24/format/webp&quot;);"></div> <span class="name">茧里</span></a></div><div class="note have-img"><a target="_blank" href="https://www.jianshu.com/p/0f049ef02105?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" class="cover" style="background-image: url(&quot;//upload-images.jianshu.io/upload_images/10289013-3d546d6cf50ce2c0?imageMogr2/auto-orient/strip|imageView2/1/w/300/h/240/format/webp&quot;);"></a> <a target="_blank" href="https://www.jianshu.com/p/0f049ef02105?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" class="title">读大学前的颜值 VS 读大学后颜值，堪比换头...</a> <p class="description">读大学前后对比照 言语已无法形容我此时的惊讶之情！ 来感受下： ▼ 只有经历了军训的黝黑 才能享受洗礼过后的美颜 ▼ 我也来！14vs31岁 ▼ 打扰了，高二vs大二 ▼ 图一图二是高二 图三图四是大二 ▼ 初三和研一 ▼ ▼ 青涩丫头到宅男女神的华丽蜕变 她用了四年时光 ▼ 萌妹子，还记得军训时的那个女汉纸咩？ ▼ 特想知道 大学时光里 她身上到底发生了什么 ▼ 都说女大十八变 现在我终于信了 ▼ 言语已无法形容我此时的惊讶之情 ▼ 今天你对我爱答不理 明天我让你高攀不起 ▼ 大学里她完成了180度华丽转身 太漂亮了 ▼ 胖的时候应该也很漂亮吧 毕竟五官摆在那了 ▼ 看看人家！ ▼ 论...</p> <a target="_blank" href="https://www.jianshu.com/u/a3d0c82fc068?utm_campaign=maleskine&amp;utm_content=user&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" class="author"><div class="avatar" style="background-image: url(&quot;//upload.jianshu.io/users/upload_avatars/10289013/42d4da0e-42df-4a17-aabf-68799fe5197b.JPG?imageMogr2/auto-orient/strip|imageView2/1/w/24/h/24/format/webp&quot;);"></div> <span class="name">大学生学术墙</span></a></div><div class="note"><!----> <a target="_blank" href="https://www.jianshu.com/p/61f42a19cb19?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" class="title">第一篇写作，就应该写“写作”这件事。</a> <p class="description">我从来没想到，第一次“正式”写作，是为了迎接某个平台的某项制度实施。当我还正在思考:如何开始写作？这个问题时，竟直接就开始了。 在我打算为写作开始前，我到处找了几个关于写作的问题，试图搞清楚想明白。因为我知道无论决定做什么，事先知道会有哪些问题发生，当真遇到问题时，承受能力会大大增强。 1，写作难也不难。写出好文章难，写水文很容易。 2，持续写可能不现实。很快就会遇到不知道写什么内容的状况。 3，未必有很好的反馈。没人看，没人评论这是常事，但要明白写作本身就是对自己的反馈。 4，刚开始就用力过猛，基本上注定会失败。这一点我健身时就深有体会，普通爱好者很难模仿健身PRO一周6天都是高强度训...</p> <a target="_blank" href="https://www.jianshu.com/u/9f0bae8f05d2?utm_campaign=maleskine&amp;utm_content=user&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" class="author"><div class="avatar" style="background-image: url(&quot;//upload.jianshu.io/users/upload_avatars/12312401/4653ab51-fd6f-4642-8de8-217d8f49f73b.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/24/h/24/format/webp&quot;);"></div> <span class="name">拜登云</span></a></div></div> <div id="ff1230eb1f6c4125a7d815eea7d94914"></div></div></div>
+  <!-- 相关文章 -->
+  <div class="seo-recommended-notes">
+  </div>
+</div>
+
+    <script type="application/json" data-name="page-data">{"user_signed_in":false,"locale":"zh-CN","os":"windows","read_mode":"day","read_font":"font2","note_show":{"is_author":false,"is_following_author":false,"is_liked_note":false,"follow_state":0,"uuid":"a60dd2bc-8c2a-4a7d-8e8c-dda2184bfcb1"},"note":{"id":19363710,"slug":"b21d54a9bdec","user_id":6275468,"notebook_id":17599226,"commentable":true,"likes_count":3,"views_count":772,"public_wordage":3560,"comments_count":14,"featured_comments_count":0,"total_rewards_count":0,"is_author":false,"paid_type":"free","paid":false,"paid_content_accessible":false,"author":{"nickname":"荒野雄兵","total_wordage":45739,"followers_count":9,"total_likes_count":25}}}</script>
+    
+    <script src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/babel-polyfill-6cd2d6b53fe3184b71cc.js" crossorigin="anonymous"></script>
+    <script src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/web-base-191c02e424e58697faa2.js" crossorigin="anonymous"></script>
+<script src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/web-325390664a8a28172f0f.js" crossorigin="anonymous"></script>
+    
+    <script src="./史上最全CentOS6离线安装部署Cloudera Manager5.9.3 - 简书_files/entry-b69e2beb14bd504c1886.js" crossorigin="anonymous"></script>
+    <script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+  
+
+<!----><!----><div style="position: static; display: none; width: 0px; height: 0px; border: none; padding: 0px; margin: 0px;"><div id="trans-tooltip"><div id="tip-left-top" style="background: url(&quot;chrome-extension://ikkepelhgbcgmhhmcmpfkjmchccjblkd/imgs/map/tip-left-top.png&quot;);"></div><div id="tip-top" style="background: url(&quot;chrome-extension://ikkepelhgbcgmhhmcmpfkjmchccjblkd/imgs/map/tip-top.png&quot;) repeat-x;"></div><div id="tip-right-top" style="background: url(&quot;chrome-extension://ikkepelhgbcgmhhmcmpfkjmchccjblkd/imgs/map/tip-right-top.png&quot;);"></div><div id="tip-right" style="background: url(&quot;chrome-extension://ikkepelhgbcgmhhmcmpfkjmchccjblkd/imgs/map/tip-right.png&quot;) repeat-y;"></div><div id="tip-right-bottom" style="background: url(&quot;chrome-extension://ikkepelhgbcgmhhmcmpfkjmchccjblkd/imgs/map/tip-right-bottom.png&quot;);"></div><div id="tip-bottom" style="background: url(&quot;chrome-extension://ikkepelhgbcgmhhmcmpfkjmchccjblkd/imgs/map/tip-bottom.png&quot;) repeat-x;"></div><div id="tip-left-bottom" style="background: url(&quot;chrome-extension://ikkepelhgbcgmhhmcmpfkjmchccjblkd/imgs/map/tip-left-bottom.png&quot;);"></div><div id="tip-left" style="background: url(&quot;chrome-extension://ikkepelhgbcgmhhmcmpfkjmchccjblkd/imgs/map/tip-left.png&quot;);"></div><div id="trans-content"></div></div><div id="tip-arrow-bottom" style="background: url(&quot;chrome-extension://ikkepelhgbcgmhhmcmpfkjmchccjblkd/imgs/map/tip-arrow-bottom.png&quot;);"></div><div id="tip-arrow-top" style="background: url(&quot;chrome-extension://ikkepelhgbcgmhhmcmpfkjmchccjblkd/imgs/map/tip-arrow-top.png&quot;);"></div></div><div class="_bd_ext_tip _bd_ext_search_mode" style="visibility: hidden; left: 993px; top: 42732px;"><span class="_bd_ext_search">百度一下</span><span class="_bd_ext_open">打开链接</span><span class="_bd_ext_copy">复制</span></div></body></html>
